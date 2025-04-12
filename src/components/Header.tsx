@@ -1,12 +1,15 @@
 
 import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
+import { useIsMobile } from '@/hooks/use-mobile';
 import LanguageToggle from './LanguageToggle';
-import { Menu, X, User, ShoppingBag, Heart } from 'lucide-react';
+import { Menu, X, User, ShoppingBag, Heart, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const { t, isRTL } = useLanguage();
+  const isMobile = useIsMobile();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
@@ -17,30 +20,30 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-white sticky top-0 z-50 shadow-sm">
-      <div className="salamtak-container py-3">
+    <header className="bg-white sticky top-0 z-50 shadow-sm ios-pt-safe">
+      <div className="salamtak-container py-2 md:py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="/" className="flex items-center">
+            <Link to="/" className="flex items-center">
               <img 
                 src="/lovable-uploads/a59638cc-4815-4280-b8ec-e299cbe65d0e.png" 
                 alt="Salamtak Logo" 
-                className="h-12 md:h-16" 
+                className="h-10 md:h-16" 
               />
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6 rtl:space-x-reverse">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.key}
-                href={item.href}
+                to={item.href}
                 className="text-salamtak-green hover:text-[#8eca39] transition-colors font-medium"
               >
                 {t(item.key)}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -63,7 +66,18 @@ const Header = () => {
 
           {/* Mobile menu button */}
           <div className="flex md:hidden items-center space-x-4 rtl:space-x-reverse">
-            <LanguageToggle />
+            {!isMobile && <LanguageToggle />}
+            
+            {isMobile && (
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="text-salamtak-green"
+              >
+                <Search size={22} />
+              </Button>
+            )}
+            
             <Button 
               variant="ghost" 
               size="icon" 
@@ -77,18 +91,21 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-green-100 mt-4 animate-fade-in">
-            <div className="flex flex-col space-y-4">
+          <nav className="md:hidden py-4 border-t border-green-100 mt-2 animate-fade-in">
+            <div className="flex flex-col space-y-3">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.key}
-                  href={item.href}
+                  to={item.href}
                   className="text-salamtak-green hover:text-[#8eca39] transition-colors font-medium px-2 py-1"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {t(item.key)}
-                </a>
+                </Link>
               ))}
+              
+              <LanguageToggle />
+              
               <div className="flex space-x-4 rtl:space-x-reverse pt-2 border-t border-green-100">
                 <Button variant="ghost" size="icon" className="text-salamtak-green">
                   <Heart size={20} />
