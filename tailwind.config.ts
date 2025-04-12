@@ -64,7 +64,8 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				salamtak: {
-					green: '#4D7C6F',
+					green: '#1a913d', // Deeper green from the logo
+					lightgreen: '#8eca39', // Lighter green from the logo
 					blue: '#6A95AD',
 					terra: '#CC7E5E',
 					sand: '#E8DACB',

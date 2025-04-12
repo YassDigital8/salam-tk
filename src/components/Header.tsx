@@ -17,16 +17,16 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-salamtak-light sticky top-0 z-50 shadow-sm">
-      <div className="salamtak-container py-4">
+    <header className="bg-white sticky top-0 z-50 shadow-sm">
+      <div className="salamtak-container py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
             <a href="/" className="flex items-center">
               <img 
-                src="/lovable-uploads/2004b7be-7bdf-4f8a-8e28-797373031c0e.png" 
+                src="/lovable-uploads/a59638cc-4815-4280-b8ec-e299cbe65d0e.png" 
                 alt="Salamtak Logo" 
-                className="h-10 md:h-12" 
+                className="h-12 md:h-16" 
               />
             </a>
           </div>
@@ -37,7 +37,7 @@ const Header = () => {
               <a
                 key={item.key}
                 href={item.href}
-                className="text-salamtak-brown hover:text-salamtak-green transition-colors font-medium"
+                className="text-salamtak-green hover:text-[#8eca39] transition-colors font-medium"
               >
                 {t(item.key)}
               </a>
@@ -48,15 +48,15 @@ const Header = () => {
           <div className="hidden md:flex items-center space-x-4 rtl:space-x-reverse">
             <LanguageToggle />
             
-            <Button variant="ghost" size="icon" className="text-salamtak-brown hover:text-salamtak-green hover:bg-salamtak-cream">
+            <Button variant="ghost" size="icon" className="text-salamtak-green hover:text-[#8eca39] hover:bg-green-50">
               <Heart size={20} />
             </Button>
             
-            <Button variant="ghost" size="icon" className="text-salamtak-brown hover:text-salamtak-green hover:bg-salamtak-cream">
+            <Button variant="ghost" size="icon" className="text-salamtak-green hover:text-[#8eca39] hover:bg-green-50">
               <ShoppingBag size={20} />
             </Button>
             
-            <Button variant="ghost" size="icon" className="text-salamtak-brown hover:text-salamtak-green hover:bg-salamtak-cream">
+            <Button variant="ghost" size="icon" className="text-salamtak-green hover:text-[#8eca39] hover:bg-green-50">
               <User size={20} />
             </Button>
           </div>
@@ -68,7 +68,7 @@ const Header = () => {
               variant="ghost" 
               size="icon" 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-salamtak-brown"
+              className="text-salamtak-green"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </Button>
@@ -77,26 +77,26 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-salamtak-sand mt-4 animate-fade-in">
+          <nav className="md:hidden py-4 border-t border-green-100 mt-4 animate-fade-in">
             <div className="flex flex-col space-y-4">
               {navItems.map((item) => (
                 <a
                   key={item.key}
                   href={item.href}
-                  className="text-salamtak-brown hover:text-salamtak-green transition-colors font-medium px-2 py-1"
+                  className="text-salamtak-green hover:text-[#8eca39] transition-colors font-medium px-2 py-1"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {t(item.key)}
                 </a>
               ))}
-              <div className="flex space-x-4 rtl:space-x-reverse pt-2 border-t border-salamtak-sand">
-                <Button variant="ghost" size="icon" className="text-salamtak-brown">
+              <div className="flex space-x-4 rtl:space-x-reverse pt-2 border-t border-green-100">
+                <Button variant="ghost" size="icon" className="text-salamtak-green">
                   <Heart size={20} />
                 </Button>
-                <Button variant="ghost" size="icon" className="text-salamtak-brown">
+                <Button variant="ghost" size="icon" className="text-salamtak-green">
                   <ShoppingBag size={20} />
                 </Button>
-                <Button variant="ghost" size="icon" className="text-salamtak-brown">
+                <Button variant="ghost" size="icon" className="text-salamtak-green">
                   <User size={20} />
                 </Button>
               </div>
