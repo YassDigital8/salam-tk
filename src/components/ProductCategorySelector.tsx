@@ -3,7 +3,7 @@ import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Leaf, Cup, Sparkles, Pill, Home } from 'lucide-react';
+import { Leaf, Coffee, Sparkles, Pill, Home } from 'lucide-react';
 
 interface Category {
   id: string;
@@ -30,7 +30,7 @@ const ProductCategorySelector = ({
   const getIcon = (iconName: string) => {
     switch(iconName) {
       case 'Leaf': return <Leaf size={18} />;
-      case 'Cup': return <Cup size={18} />;
+      case 'Cup': return <Coffee size={18} />; // Changed from Cup to Coffee
       case 'Sparkles': return <Sparkles size={18} />;
       case 'Pill': return <Pill size={18} />;
       case 'Home': return <Home size={18} />;
