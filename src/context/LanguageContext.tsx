@@ -43,6 +43,10 @@ const translations: TranslationProps = {
     en: 'Wellness',
     ar: 'العافية',
   },
+  search: {
+    en: 'Search',
+    ar: 'بحث',
+  },
   heroTitle: {
     en: 'Your Natural Path to Wellness',
     ar: 'طريقك الطبيعي للعافية',
@@ -102,6 +106,34 @@ const translations: TranslationProps = {
   viewAll: {
     en: 'View All',
     ar: 'عرض الكل',
+  },
+  interactiveBodyModel: {
+    en: 'Interactive Body Model',
+    ar: 'نموذج الجسم التفاعلي'
+  },
+  suggestedRemedies: {
+    en: 'Suggested Remedies',
+    ar: 'العلاجات المقترحة'
+  },
+  bookConsultation: {
+    en: 'Book a Consultation',
+    ar: 'احجز استشارة'
+  },
+  selectBodyPart: {
+    en: 'Select a body part',
+    ar: 'اختر جزءًا من الجسم'
+  },
+  addToCart: {
+    en: 'Add to Cart',
+    ar: 'أضف إلى السلة'
+  },
+  bookNow: {
+    en: 'Book Now',
+    ar: 'احجز الآن'
+  },
+  minutes: {
+    en: 'mins',
+    ar: 'دقيقة'
   },
   footer: {
     en: 'Salamtak - Your Natural Path to Wellness',
