@@ -1,0 +1,77 @@
+
+import React from 'react';
+import { useLanguage } from '@/context/LanguageContext';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Clock, Star, Calendar } from 'lucide-react';
+
+interface ServiceCardProps {
+  service: {
+    id: string;
+    name: {
+      en: string;
+      ar: string;
+    };
+    description: {
+      en: string;
+      ar: string;
+    };
+    duration: number;
+    price: number;
+    image: string;
+    rating: number;
+  };
+}
+
+const ServiceCard = ({ service }: ServiceCardProps) => {
+  const { language, isRTL } = useLanguage();
+  
+  return (
+    <Card className="overflow-hidden border-salamtak-sand hover:border-salamtak-blue transition-colors">
+      <div className="relative">
+        <img 
+          src={service.image} 
+          alt={service.name[language]} 
+          className="w-full aspect-video object-cover"
+        />
+      </div>
+      
+      <CardContent className="pt-4">
+        <div className="flex items-center justify-between">
+          <h3 className="font-medium text-salamtak-brown">
+            {service.name[language]}
+          </h3>
+          <div className="flex items-center gap-1 text-amber-500">
+            <Star size={16} fill="currentColor" />
+            <span className="text-sm">{service.rating}</span>
+          </div>
+        </div>
+        
+        <p className="text-sm text-salamtak-brown/70 mt-1 line-clamp-2">
+          {service.description[language]}
+        </p>
+        
+        <div className="flex items-center justify-between mt-3">
+          <div className="flex items-center gap-1 text-salamtak-brown/70">
+            <Clock size={16} />
+            <span className="text-sm">{service.duration} {isRTL ? 'دقيقة' : 'mins'}</span>
+          </div>
+          <div className="font-bold text-salamtak-blue">
+            ${service.price.toFixed(2)}
+          </div>
+        </div>
+      </CardContent>
+      
+      <CardFooter className="pt-0">
+        <Button 
+          className="w-full bg-salamtak-blue hover:bg-salamtak-blue/90 gap-2"
+        >
+          <Calendar size={16} />
+          <span>{isRTL ? 'احجز الآن' : 'Book Now'}</span>
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+};
+
+export default ServiceCard;
