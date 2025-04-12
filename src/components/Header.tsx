@@ -22,8 +22,12 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="/" className="flex items-center space-x-2 rtl:space-x-reverse">
-              <span className="text-2xl font-bold text-salamtak-green">{t('appName')}</span>
+            <a href="/" className="flex items-center">
+              <img 
+                src="/lovable-uploads/2004b7be-7bdf-4f8a-8e28-797373031c0e.png" 
+                alt="Salamtak Logo" 
+                className="h-10 md:h-12" 
+              />
             </a>
           </div>
 
