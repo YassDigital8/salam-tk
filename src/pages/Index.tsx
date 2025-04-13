@@ -45,9 +45,9 @@ const MainContent = () => {
             </div>
             <div className="md:w-1/2 flex justify-center mb-6 md:mb-0">
               <img 
-                src="/placeholder.svg" 
-                alt="Wellness illustration" 
-                className="max-w-[70%] md:max-w-sm xl:max-w-md rounded-2xl shadow-lg"
+                src="/lovable-uploads/0f9a78a9-8160-4723-9438-c05c95f9ac8e.png" 
+                alt="Woman enjoying herbal tea with fresh herbs" 
+                className="max-w-[80%] md:max-w-sm xl:max-w-md rounded-2xl shadow-lg"
               />
             </div>
           </div>
