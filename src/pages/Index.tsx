@@ -45,14 +45,9 @@ const MainContent = () => {
             </div>
             <div className="md:w-1/2 flex justify-center mb-6 md:mb-0">
               <img 
-                src="/lovable-uploads/de48f58f-d4c8-4d4d-a568-609a9622b916.png" 
-                alt="Wellness herbs and products" 
-                className="max-w-[80%] md:max-w-sm xl:max-w-md rounded-2xl shadow-lg object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = '/placeholder.svg';
-                  console.log('Hero image failed to load');
-                }}
+                src="/placeholder.svg" 
+                alt="Wellness illustration" 
+                className="max-w-[70%] md:max-w-sm xl:max-w-md rounded-2xl shadow-lg"
               />
             </div>
           </div>
@@ -115,13 +110,12 @@ const MainContent = () => {
         </div>
       </section>
       
-      {/* Features Section with Background Image */}
-      <section className="py-10 md:py-16 bg-cover bg-center relative" style={{backgroundImage: 'url("/lovable-uploads/229fc3c8-af9f-43cd-8edc-2e9758391776.jpg")'}}>
-        <div className="absolute inset-0 bg-salamtak-green/40 backdrop-blur-sm"></div>
-        <div className="salamtak-container relative z-10">
+      {/* Features Section */}
+      <section className="py-10 md:py-16">
+        <div className="salamtak-container">
           <div className="text-center mb-8 md:mb-12">
-            <h2 className="section-title text-white">{t('featuresTitle')}</h2>
-            <p className="text-white/90 text-base md:text-lg">{t('featuresSubtitle')}</p>
+            <h2 className="section-title">{t('featuresTitle')}</h2>
+            <p className="section-subtitle text-base md:text-lg">{t('featuresSubtitle')}</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">

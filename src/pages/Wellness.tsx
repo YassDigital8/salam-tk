@@ -18,18 +18,14 @@ const WellnessContent = () => {
   return (
     <main className="pb-20 md:pb-0">
       {/* Hero Section */}
-      <section className="bg-cover bg-center py-16 relative" 
-               style={{backgroundImage: 'url("/lovable-uploads/41c7e988-c548-4ba2-b6ba-aa2c70d60ea7.jpg")'}}>
-        <div className="absolute inset-0 bg-salamtak-leaf/50 backdrop-blur-[1px]"></div>
-        <div className="salamtak-container relative z-10">
-          <div className="max-w-lg bg-white/90 p-6 rounded-lg shadow-lg backdrop-blur-sm">
-            <h1 className="text-3xl font-bold text-salamtak-leaf mb-2">
-              {t('featuresTitle')}
-            </h1>
-            <p className="text-salamtak-brown/80">
-              {t('featuresSubtitle')}
-            </p>
-          </div>
+      <section className="bg-gradient-to-b from-salamtak-light to-white py-8">
+        <div className="salamtak-container">
+          <h1 className="text-3xl font-bold text-salamtak-green mb-2">
+            {t('featuresTitle')}
+          </h1>
+          <p className="text-salamtak-brown/80 max-w-lg">
+            {t('featuresSubtitle')}
+          </p>
         </div>
       </section>
       
@@ -92,7 +88,7 @@ const WellnessContent = () => {
                       </ul>
                     </div>
                     <div className="flex items-center justify-center">
-                      <img src="/lovable-uploads/448e4e23-fcc8-40be-b8bc-ab57f936d7a7.jpg" alt="Consultation" className="max-w-full rounded-lg shadow-md" />
+                      <img src="/placeholder.svg" alt="Consultation" className="max-w-full rounded-lg shadow-md" />
                     </div>
                   </div>
                 </CardContent>
@@ -128,7 +124,7 @@ const WellnessContent = () => {
                       </ul>
                     </div>
                     <div className="flex items-center justify-center">
-                      <img src="/lovable-uploads/fd86b7c9-e0fe-418e-a0a5-6fdc7415ca09.jpg" alt="Fitness" className="max-w-full rounded-lg shadow-md" />
+                      <img src="/placeholder.svg" alt="Fitness" className="max-w-full rounded-lg shadow-md" />
                     </div>
                   </div>
                 </CardContent>
@@ -164,7 +160,7 @@ const WellnessContent = () => {
                       </ul>
                     </div>
                     <div className="flex items-center justify-center">
-                      <img src="/lovable-uploads/3240d530-74cd-4f0c-80bb-3fe2602902c0.jpg" alt="Mental wellness" className="max-w-full rounded-lg shadow-md" />
+                      <img src="/placeholder.svg" alt="Mental wellness" className="max-w-full rounded-lg shadow-md" />
                     </div>
                   </div>
                 </CardContent>

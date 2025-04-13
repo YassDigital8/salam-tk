@@ -18,27 +18,24 @@ const ServicesContent = () => {
   
   return (
     <main className="pb-20 md:pb-0">
-      {/* Hero Section with Background Image */}
-      <section className="bg-cover bg-center py-16 relative" 
-               style={{backgroundImage: 'url("/lovable-uploads/3dd14c91-0af0-4fa0-9455-4b9b47ed7126.jpg")'}}>
-        <div className="absolute inset-0 bg-salamtak-blue/30 backdrop-blur-[2px]"></div>
-        <div className="salamtak-container relative z-10">
-          <div className="max-w-lg bg-white/90 p-6 rounded-lg shadow-lg backdrop-blur-sm">
-            <h1 className="text-3xl font-bold text-salamtak-blue mb-2">
-              {t('servicesTitle')}
-            </h1>
-            <p className="text-salamtak-brown/80">
-              {t('servicesSubtitle')}
-            </p>
-            
-            <div className="mt-6">
-              <Button 
-                onClick={() => setIsModelOpen(true)}
-                className="bg-salamtak-blue text-white border-salamtak-blue hover:bg-salamtak-blue/90"
-              >
-                {isRTL ? 'فحص جسمك التفاعلي' : 'Interactive Body Check'}
-              </Button>
-            </div>
+      {/* Hero Section */}
+      <section className="bg-gradient-to-b from-salamtak-light to-white py-8">
+        <div className="salamtak-container">
+          <h1 className="text-3xl font-bold text-salamtak-green mb-2">
+            {t('servicesTitle')}
+          </h1>
+          <p className="text-salamtak-brown/80 max-w-lg">
+            {t('servicesSubtitle')}
+          </p>
+          
+          <div className="mt-6">
+            <Button 
+              variant="outline" 
+              onClick={() => setIsModelOpen(true)}
+              className="bg-salamtak-blue text-white border-salamtak-blue hover:bg-salamtak-blue/90"
+            >
+              {isRTL ? 'فحص جسمك التفاعلي' : 'Interactive Body Check'}
+            </Button>
           </div>
         </div>
       </section>

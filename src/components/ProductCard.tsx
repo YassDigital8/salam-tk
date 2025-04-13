@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
@@ -24,25 +25,13 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   const { language, isRTL } = useLanguage();
   
-  const getImageUrl = (imagePath: string) => {
-    if (imagePath.startsWith('http') || imagePath.startsWith('data:')) {
-      return imagePath;
-    }
-    return imagePath;
-  };
-  
   return (
-    <Card className="overflow-hidden border-salamtak-sand hover:border-salamtak-green transition-colors h-full flex flex-col">
-      <div className="relative bg-gray-100">
+    <Card className="overflow-hidden border-salamtak-sand hover:border-salamtak-green transition-colors">
+      <div className="relative">
         <img 
-          src={getImageUrl(product.image)} 
+          src={product.image} 
           alt={product.name[language]} 
           className="w-full aspect-square object-cover"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.src = '/placeholder.svg';
-            console.log('Image failed to load:', product.image);
-          }}
         />
         <Button 
           variant="ghost" 
@@ -53,7 +42,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </Button>
       </div>
       
-      <CardContent className="pt-4 flex-grow">
+      <CardContent className="pt-4">
         <div className="flex items-center justify-between">
           <h3 className="font-medium text-salamtak-brown">
             {product.name[language]}
