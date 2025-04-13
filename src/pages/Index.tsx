@@ -45,14 +45,9 @@ const MainContent = () => {
             </div>
             <div className="md:w-1/2 flex justify-center mb-6 md:mb-0">
               <img 
-                src="/lovable-uploads/de48f58f-d4c8-4d4d-a568-609a9622b916.png" 
+                src="/lovable-uploads/ea87e48b-85ae-4418-9d93-d86156246dc3.jpg" 
                 alt="Wellness herbs and products" 
                 className="max-w-[80%] md:max-w-sm xl:max-w-md rounded-2xl shadow-lg object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = '/placeholder.svg';
-                  console.log('Hero image failed to load');
-                }}
               />
             </div>
           </div>

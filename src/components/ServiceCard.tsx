@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
@@ -25,25 +26,16 @@ interface ServiceCardProps {
 const ServiceCard = ({ service }: ServiceCardProps) => {
   const { language, isRTL } = useLanguage();
   
-  const getImageUrl = (imagePath: string) => {
-    if (imagePath.startsWith('http') || imagePath.startsWith('data:')) {
-      return imagePath;
-    }
-    
-    return imagePath;
-  };
-  
   return (
     <Card className="overflow-hidden border-salamtak-sand hover:border-salamtak-blue transition-colors h-full flex flex-col">
-      <div className="relative bg-gray-100">
+      <div className="relative">
         <img 
-          src={getImageUrl(service.image)} 
+          src={service.image} 
           alt={service.name[language]} 
           className="w-full aspect-video object-cover"
           onError={(e) => {
             const target = e.target as HTMLImageElement;
             target.src = '/placeholder.svg';
-            console.log('Image failed to load:', service.image);
           }}
         />
         <div className="absolute top-2 right-2 bg-white/70 rounded-full px-2 py-1 flex items-center gap-1 text-amber-500">

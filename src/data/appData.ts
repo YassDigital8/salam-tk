@@ -1,3 +1,4 @@
+
 // Mock data for the application
 
 // Product Categories
@@ -58,7 +59,7 @@ export const products = [
     },
     category: 'herbs',
     price: 12.99,
-    image: '/lovable-uploads/de48f58f-d4c8-4d4d-a568-609a9622b916.png',
+    image: '/lovable-uploads/fd86b7c9-e0fe-418e-a0a5-6fdc7415ca09.jpg',
     rating: 4.7
   },
   {
@@ -73,7 +74,7 @@ export const products = [
     },
     category: 'tea',
     price: 15.99,
-    image: '/lovable-uploads/de48f58f-d4c8-4d4d-a568-609a9622b916.png',
+    image: '/lovable-uploads/3240d530-74cd-4f0c-80bb-3fe2602902c0.jpg',
     rating: 4.5
   },
   {
@@ -88,7 +89,7 @@ export const products = [
     },
     category: 'cosmetics',
     price: 29.99,
-    image: '/lovable-uploads/de48f58f-d4c8-4d4d-a568-609a9622b916.png',
+    image: '/lovable-uploads/448e4e23-fcc8-40be-b8bc-ab57f936d7a7.jpg',
     rating: 4.8
   },
   {
@@ -152,7 +153,7 @@ export const services = [
     },
     duration: 60,
     price: 75,
-    image: '/lovable-uploads/de48f58f-d4c8-4d4d-a568-609a9622b916.png',
+    image: '/lovable-uploads/3dd14c91-0af0-4fa0-9455-4b9b47ed7126.jpg',
     rating: 4.8
   },
   {
