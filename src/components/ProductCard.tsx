@@ -26,16 +26,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const { language, isRTL } = useLanguage();
   
   return (
-    <Card className="overflow-hidden border-salamtak-sand hover:border-salamtak-green transition-colors h-full flex flex-col">
+    <Card className="overflow-hidden border-salamtak-sand hover:border-salamtak-green transition-colors">
       <div className="relative">
         <img 
           src={product.image} 
           alt={product.name[language]} 
           className="w-full aspect-square object-cover"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.src = '/placeholder.svg';
-          }}
         />
         <Button 
           variant="ghost" 
@@ -46,7 +42,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </Button>
       </div>
       
-      <CardContent className="pt-4 flex-grow">
+      <CardContent className="pt-4">
         <div className="flex items-center justify-between">
           <h3 className="font-medium text-salamtak-brown">
             {product.name[language]}

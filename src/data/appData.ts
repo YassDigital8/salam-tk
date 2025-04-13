@@ -17,7 +17,7 @@ export const productCategories = [
       en: 'Tea & Infusions',
       ar: 'الشاي والمشروبات العشبية'
     },
-    icon: 'Coffee'
+    icon: 'Cup'
   },
   {
     id: 'cosmetics',
@@ -59,7 +59,7 @@ export const products = [
     },
     category: 'herbs',
     price: 12.99,
-    image: '/lovable-uploads/fd86b7c9-e0fe-418e-a0a5-6fdc7415ca09.jpg',
+    image: '/placeholder.svg',
     rating: 4.7
   },
   {
@@ -74,7 +74,7 @@ export const products = [
     },
     category: 'tea',
     price: 15.99,
-    image: '/lovable-uploads/3240d530-74cd-4f0c-80bb-3fe2602902c0.jpg',
+    image: '/placeholder.svg',
     rating: 4.5
   },
   {
@@ -89,7 +89,7 @@ export const products = [
     },
     category: 'cosmetics',
     price: 29.99,
-    image: '/lovable-uploads/448e4e23-fcc8-40be-b8bc-ab57f936d7a7.jpg',
+    image: '/placeholder.svg',
     rating: 4.8
   },
   {
@@ -104,7 +104,7 @@ export const products = [
     },
     category: 'supplements',
     price: 22.50,
-    image: '/lovable-uploads/ea87e48b-85ae-4418-9d93-d86156246dc3.jpg',
+    image: '/placeholder.svg',
     rating: 4.6
   },
   {
@@ -119,7 +119,7 @@ export const products = [
     },
     category: 'home',
     price: 18.99,
-    image: '/lovable-uploads/229fc3c8-af9f-43cd-8edc-2e9758391776.jpg',
+    image: '/placeholder.svg',
     rating: 4.9
   },
   {
@@ -134,7 +134,7 @@ export const products = [
     },
     category: 'home',
     price: 24.99,
-    image: '/lovable-uploads/41c7e988-c548-4ba2-b6ba-aa2c70d60ea7.jpg',
+    image: '/placeholder.svg',
     rating: 4.7
   }
 ];
@@ -153,7 +153,7 @@ export const services = [
     },
     duration: 60,
     price: 75,
-    image: '/lovable-uploads/3dd14c91-0af0-4fa0-9455-4b9b47ed7126.jpg',
+    image: '/placeholder.svg',
     rating: 4.8
   },
   {
@@ -168,7 +168,7 @@ export const services = [
     },
     duration: 45,
     price: 90,
-    image: '/lovable-uploads/c7c0c3f8-432e-4a7c-a6d7-692fc954ff85.jpg',
+    image: '/placeholder.svg',
     rating: 4.9
   },
   {
@@ -183,7 +183,7 @@ export const services = [
     },
     duration: 60,
     price: 85,
-    image: '/lovable-uploads/ea87e48b-85ae-4418-9d93-d86156246dc3.jpg',
+    image: '/placeholder.svg',
     rating: 4.7
   },
   {
@@ -198,7 +198,7 @@ export const services = [
     },
     duration: 45,
     price: 110,
-    image: '/lovable-uploads/fd86b7c9-e0fe-418e-a0a5-6fdc7415ca09.jpg',
+    image: '/placeholder.svg',
     rating: 4.6
   }
 ];

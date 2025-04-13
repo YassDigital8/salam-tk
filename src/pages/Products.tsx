@@ -34,24 +34,20 @@ const ProductsContent = () => {
   
   return (
     <main className="pb-20 md:pb-0">
-      {/* Hero Section with Background Image */}
-      <section className="bg-cover bg-center py-16 relative" 
-               style={{backgroundImage: 'url("/lovable-uploads/c7c0c3f8-432e-4a7c-a6d7-692fc954ff85.jpg")'}}>
-        <div className="absolute inset-0 bg-salamtak-green/40 backdrop-blur-[1px]"></div>
-        <div className="salamtak-container relative z-10">
-          <div className="max-w-lg bg-white/90 p-6 rounded-lg shadow-lg backdrop-blur-sm">
-            <h1 className="text-3xl font-bold text-salamtak-green mb-2">
-              {t('productsTitle')}
-            </h1>
-            <p className="text-salamtak-brown/80">
-              {t('productsSubtitle')}
-            </p>
-          </div>
+      {/* Hero Section */}
+      <section className="bg-salamtak-light py-8">
+        <div className="salamtak-container">
+          <h1 className="text-3xl font-bold text-salamtak-green mb-2">
+            {t('productsTitle')}
+          </h1>
+          <p className="text-salamtak-brown/80 max-w-lg">
+            {t('productsSubtitle')}
+          </p>
         </div>
       </section>
       
       {/* Search and Filter Section */}
-      <section className="py-6 border-b border-salamtak-sand bg-white sticky top-[64px] md:top-[72px] z-10 shadow-sm">
+      <section className="py-6 border-b border-salamtak-sand">
         <div className="salamtak-container">
           <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
             <div className="relative w-full md:w-64">
