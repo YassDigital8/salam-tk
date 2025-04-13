@@ -23,18 +23,32 @@ interface FeatureCardProps {
 const FeatureCard = ({ feature }: FeatureCardProps) => {
   const { language, t } = useLanguage();
   
-  // Map icon strings to components
+  // Map icon strings to components with styled background
   const getIcon = (iconName: string) => {
     const icons = {
-      'Video': <Video size={32} className="text-salamtak-leaf" />,
-      'Activity': <Activity size={32} className="text-salamtak-leaf" />,
-      'Heart': <Heart size={32} className="text-salamtak-leaf" />
+      'Video': <Video size={28} className="text-white" />,
+      'Activity': <Activity size={28} className="text-white" />,
+      'Heart': <Heart size={28} className="text-white" />
     };
-    return icons[iconName as keyof typeof icons] || null;
+    
+    const iconEl = icons[iconName as keyof typeof icons] || null;
+    const bgColors = {
+      'Video': 'bg-salamtak-blue',
+      'Activity': 'bg-salamtak-green',
+      'Heart': 'bg-salamtak-terra'
+    };
+    
+    const bgColor = bgColors[iconName as keyof typeof bgColors] || 'bg-salamtak-leaf';
+    
+    return (
+      <div className={`${bgColor} w-14 h-14 rounded-lg flex items-center justify-center shadow-md`}>
+        {iconEl}
+      </div>
+    );
   };
 
   return (
-    <Card className="overflow-hidden border-salamtak-sand hover:border-salamtak-leaf transition-colors h-full flex flex-col">
+    <Card className="overflow-hidden border-salamtak-sand hover:border-salamtak-leaf transition-colors h-full flex flex-col bg-white/90 backdrop-blur-sm">
       <CardContent className="pt-6 flex-grow">
         <div className="mb-4">
           {getIcon(feature.icon)}

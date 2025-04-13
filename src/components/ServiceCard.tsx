@@ -27,27 +27,29 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
   const { language, isRTL } = useLanguage();
   
   return (
-    <Card className="overflow-hidden border-salamtak-sand hover:border-salamtak-blue transition-colors">
+    <Card className="overflow-hidden border-salamtak-sand hover:border-salamtak-blue transition-colors h-full flex flex-col">
       <div className="relative">
         <img 
           src={service.image} 
           alt={service.name[language]} 
           className="w-full aspect-video object-cover"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = '/placeholder.svg';
+          }}
         />
+        <div className="absolute top-2 right-2 bg-white/70 rounded-full px-2 py-1 flex items-center gap-1 text-amber-500">
+          <Star size={16} fill="currentColor" />
+          <span className="text-sm font-medium">{service.rating}</span>
+        </div>
       </div>
       
-      <CardContent className="pt-4">
-        <div className="flex items-center justify-between">
-          <h3 className="font-medium text-salamtak-brown">
-            {service.name[language]}
-          </h3>
-          <div className="flex items-center gap-1 text-amber-500">
-            <Star size={16} fill="currentColor" />
-            <span className="text-sm">{service.rating}</span>
-          </div>
-        </div>
+      <CardContent className="pt-4 flex-grow">
+        <h3 className="font-medium text-salamtak-brown text-lg">
+          {service.name[language]}
+        </h3>
         
-        <p className="text-sm text-salamtak-brown/70 mt-1 line-clamp-2">
+        <p className="text-sm text-salamtak-brown/70 mt-2 mb-3">
           {service.description[language]}
         </p>
         
