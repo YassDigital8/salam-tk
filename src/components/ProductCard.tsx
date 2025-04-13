@@ -32,6 +32,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
           src={product.image} 
           alt={product.name[language]} 
           className="w-full aspect-square object-cover"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = '/placeholder.svg';
+          }}
         />
         <Button 
           variant="ghost" 

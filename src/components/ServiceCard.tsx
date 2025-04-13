@@ -33,6 +33,10 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
           src={service.image} 
           alt={service.name[language]} 
           className="w-full aspect-video object-cover"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = '/placeholder.svg';
+          }}
         />
         <div className="absolute top-2 right-2 bg-white/70 rounded-full px-2 py-1 flex items-center gap-1 text-amber-500">
           <Star size={16} fill="currentColor" />
