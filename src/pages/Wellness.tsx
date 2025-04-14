@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { useLanguage } from '@/context/LanguageContext';
@@ -6,11 +5,11 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import MobileNavigation from '@/components/MobileNavigation';
-import { features } from '@/data/appData';
 import FeatureCard from '@/components/FeatureCard';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent } from '@/components/ui/card';
 import { Video, Heart, Activity } from 'lucide-react';
+import { features } from '@/data';
 
 const WellnessContent = () => {
   const { t, isRTL } = useLanguage();

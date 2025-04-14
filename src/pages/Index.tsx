@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { useLanguage } from '@/context/LanguageContext';
@@ -11,7 +10,7 @@ import ServiceCard from '@/components/ServiceCard';
 import FeatureCard from '@/components/FeatureCard';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, ArrowLeft, ShoppingBag, CalendarDays } from 'lucide-react';
-import { products, services, features } from '@/data/appData';
+import { products, services, features } from '@/data';
 
 const MainContent = () => {
   const { t, isRTL } = useLanguage();

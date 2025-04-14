@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { useLanguage } from '@/context/LanguageContext';
@@ -8,7 +7,7 @@ import Footer from '@/components/Footer';
 import MobileNavigation from '@/components/MobileNavigation';
 import ServiceCard from '@/components/ServiceCard';
 import { Button } from '@/components/ui/button';
-import { services } from '@/data/appData';
+import { services } from '@/data';
 import { Calendar } from 'lucide-react';
 import BodyModelInteractive from '@/components/BodyModelInteractive';
 
