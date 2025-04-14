@@ -28,7 +28,7 @@ export const products: Product[] = [
     },
     category: 'herbs',
     price: 12.99,
-    image: '/lovable-uploads/a298b1f6-21c5-45b6-b56d-f26c161eb6cb.png',
+    image: '/lovable-uploads/57845bad-046c-43ba-bc2a-694feb07b536.png',
     rating: 4.7
   },
   {
