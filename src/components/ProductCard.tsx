@@ -25,6 +25,10 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   const { language, isRTL } = useLanguage();
   
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = '/placeholder.svg';
+  };
+  
   return (
     <Card className="overflow-hidden border-salamtak-sand hover:border-salamtak-green transition-colors">
       <div className="relative">
@@ -32,6 +36,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           src={product.image} 
           alt={product.name[language]} 
           className="w-full aspect-square object-cover"
+          onError={handleImageError}
         />
         <Button 
           variant="ghost" 
