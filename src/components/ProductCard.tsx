@@ -1,9 +1,9 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ShoppingBag, Heart, Star } from 'lucide-react';
+import { ShoppingBag, Heart, Star, Plus, Minus } from 'lucide-react';
 
 interface ProductCardProps {
   product: {
@@ -24,9 +24,18 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const { language, isRTL } = useLanguage();
+  const [quantity, setQuantity] = useState(1);
   
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = '/placeholder.svg';
+  };
+
+  const incrementQuantity = () => {
+    setQuantity(prev => prev + 1);
+  };
+
+  const decrementQuantity = () => {
+    setQuantity(prev => prev > 1 ? prev - 1 : 1);
   };
   
   return (
@@ -62,6 +71,26 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </p>
         <div className="mt-2 font-bold text-salamtak-green">
           ${product.price.toFixed(2)}
+        </div>
+        
+        <div className="flex items-center mt-3 border rounded-md w-fit">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="h-8 w-8 p-0 text-salamtak-brown"
+            onClick={decrementQuantity}
+          >
+            <Minus size={16} />
+          </Button>
+          <span className="w-8 text-center">{quantity}</span>
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="h-8 w-8 p-0 text-salamtak-brown"
+            onClick={incrementQuantity}
+          >
+            <Plus size={16} />
+          </Button>
         </div>
       </CardContent>
       
