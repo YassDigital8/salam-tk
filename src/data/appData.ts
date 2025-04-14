@@ -1,4 +1,3 @@
-
 // Mock data for the application
 
 // Product Categories
@@ -59,7 +58,7 @@ export const products = [
     },
     category: 'herbs',
     price: 12.99,
-    image: '/placeholder.svg',
+    image: '/lovable-uploads/a298b1f6-21c5-45b6-b56d-f26c161eb6cb.png',
     rating: 4.7
   },
   {
