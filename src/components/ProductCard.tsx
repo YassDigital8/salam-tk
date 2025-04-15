@@ -4,7 +4,6 @@ import { useLanguage } from '@/context/LanguageContext';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ShoppingBag, Heart, Star, Plus, Minus } from 'lucide-react';
-import { toast } from 'sonner';
 
 interface ProductCardProps {
   product: {
@@ -26,7 +25,6 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   const { language, isRTL } = useLanguage();
   const [quantity, setQuantity] = useState(1);
-  const [isFavorite, setIsFavorite] = useState(false);
   
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = '/placeholder.svg';
@@ -38,27 +36,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   const decrementQuantity = () => {
     setQuantity(prev => prev > 1 ? prev - 1 : 1);
-  };
-  
-  const toggleFavorite = () => {
-    setIsFavorite(prev => !prev);
-    toast.success(
-      isFavorite
-        ? isRTL 
-          ? `تمت إزالة ${product.name.ar} من المفضلة` 
-          : `${product.name.en} removed from favorites`
-        : isRTL 
-          ? `تمت إضافة ${product.name.ar} إلى المفضلة` 
-          : `${product.name.en} added to favorites`
-    );
-  };
-
-  const addToCart = () => {
-    toast.success(
-      isRTL 
-        ? `تمت إضافة ${quantity} ${product.name.ar} إلى السلة` 
-        : `${quantity} ${product.name.en} added to cart`
-    );
   };
   
   return (
@@ -73,10 +50,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <Button 
           variant="ghost" 
           size="icon" 
-          className={`absolute top-2 right-2 bg-white/70 hover:bg-white ${isFavorite ? 'text-red-500' : 'text-salamtak-brown hover:text-salamtak-green'} rounded-full`}
-          onClick={toggleFavorite}
+          className="absolute top-2 right-2 bg-white/70 hover:bg-white text-salamtak-brown hover:text-salamtak-green rounded-full"
         >
-          <Heart size={18} fill={isFavorite ? "currentColor" : "none"} />
+          <Heart size={18} />
         </Button>
       </div>
       
@@ -121,7 +97,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <CardFooter className="pt-0">
         <Button 
           className="w-full bg-salamtak-green hover:bg-salamtak-green/90 gap-2"
-          onClick={addToCart}
         >
           <ShoppingBag size={16} />
           <span>{isRTL ? 'أضف إلى السلة' : 'Add to Cart'}</span>
