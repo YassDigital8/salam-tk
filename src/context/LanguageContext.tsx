@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
 type Language = 'en' | 'ar';
@@ -17,11 +16,11 @@ interface TranslationProps {
   };
 }
 
-// Will be expanded with more translations
+// Updated translations with new app name
 const translations: TranslationProps = {
   appName: {
-    en: 'Salamtak',
-    ar: 'سلامتك',
+    en: 'Salam-tak',
+    ar: 'سلام-تك',
   },
   home: {
     en: 'Home',
@@ -136,8 +135,8 @@ const translations: TranslationProps = {
     ar: 'دقيقة'
   },
   footer: {
-    en: 'Salamtak - Your Natural Path to Wellness',
-    ar: 'سلامتك - طريقك الطبيعي للعافية',
+    en: 'Salam-tak - Your Natural Path to Wellness',
+    ar: 'سلام-تك - طريقك الطبيعي للعافية',
   }
 };
 
