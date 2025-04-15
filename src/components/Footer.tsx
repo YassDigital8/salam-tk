@@ -1,8 +1,8 @@
-
 import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import LanguageToggle from './LanguageToggle';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const { t, isRTL } = useLanguage();
@@ -41,29 +41,29 @@ const Footer = () => {
             </h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-salamtak-brown/80 hover:text-salamtak-green transition-colors text-sm">
+                <Link to="/about" className="text-salamtak-brown/80 hover:text-salamtak-green transition-colors text-sm">
                   {isRTL ? 'من نحن' : 'About Us'}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-salamtak-brown/80 hover:text-salamtak-green transition-colors text-sm">
+                <Link to="/contact" className="text-salamtak-brown/80 hover:text-salamtak-green transition-colors text-sm">
                   {isRTL ? 'التواصل' : 'Contact'}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-salamtak-brown/80 hover:text-salamtak-green transition-colors text-sm">
+                <Link to="/faq" className="text-salamtak-brown/80 hover:text-salamtak-green transition-colors text-sm">
                   {isRTL ? 'الأسئلة الشائعة' : 'FAQs'}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-salamtak-brown/80 hover:text-salamtak-green transition-colors text-sm">
+                <Link to="/privacy" className="text-salamtak-brown/80 hover:text-salamtak-green transition-colors text-sm">
                   {isRTL ? 'سياسة الخصوصية' : 'Privacy Policy'}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-salamtak-brown/80 hover:text-salamtak-green transition-colors text-sm">
+                <Link to="/terms" className="text-salamtak-brown/80 hover:text-salamtak-green transition-colors text-sm">
                   {isRTL ? 'شروط الخدمة' : 'Terms of Service'}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

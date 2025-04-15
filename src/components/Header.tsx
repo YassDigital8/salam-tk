@@ -1,16 +1,16 @@
-
 import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
 import LanguageToggle from './LanguageToggle';
 import { Menu, X, User, ShoppingBag, Heart, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const { t, isRTL } = useLanguage();
   const isMobile = useIsMobile();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const navItems = [
     { key: 'home', href: '/' },
@@ -18,6 +18,8 @@ const Header = () => {
     { key: 'services', href: '/services' },
     { key: 'wellness', href: '/wellness' }
   ];
+
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <header className="bg-white sticky top-0 z-50 shadow-sm ios-pt-safe">
@@ -40,7 +42,11 @@ const Header = () => {
               <Link
                 key={item.key}
                 to={item.href}
-                className="text-salamtak-green hover:text-[#8eca39] transition-colors font-medium"
+                className={`transition-colors font-medium ${
+                  isActive(item.href) 
+                    ? 'text-salamtak-green' 
+                    : 'text-salamtak-brown hover:text-salamtak-green'
+                }`}
               >
                 {t(item.key)}
               </Link>
@@ -59,9 +65,11 @@ const Header = () => {
               <ShoppingBag size={20} />
             </Button>
             
-            <Button variant="ghost" size="icon" className="text-salamtak-green hover:text-[#8eca39] hover:bg-green-50">
-              <User size={20} />
-            </Button>
+            <Link to="/profile">
+              <Button variant="ghost" size="icon" className="text-salamtak-green hover:text-[#8eca39] hover:bg-green-50">
+                <User size={20} />
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -97,7 +105,11 @@ const Header = () => {
                 <Link
                   key={item.key}
                   to={item.href}
-                  className="text-salamtak-green hover:text-[#8eca39] transition-colors font-medium px-2 py-1"
+                  className={`transition-colors font-medium px-2 py-1 ${
+                    isActive(item.href) 
+                      ? 'text-salamtak-green' 
+                      : 'text-salamtak-brown hover:text-salamtak-green'
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {t(item.key)}
@@ -113,9 +125,11 @@ const Header = () => {
                 <Button variant="ghost" size="icon" className="text-salamtak-green">
                   <ShoppingBag size={20} />
                 </Button>
-                <Button variant="ghost" size="icon" className="text-salamtak-green">
-                  <User size={20} />
-                </Button>
+                <Link to="/profile">
+                  <Button variant="ghost" size="icon" className="text-salamtak-green">
+                    <User size={20} />
+                  </Button>
+                </Link>
               </div>
             </div>
           </nav>
