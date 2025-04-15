@@ -17,7 +17,7 @@ const MoodTracker: React.FC<MoodTrackerProps> = ({ onMoodSubmit, mood, setMood }
   };
   
   return (
-    <Card className="p-4 border-salamtak-sand h-full flex flex-col">
+    <Card className="p-4 border-salamtak-sand flex flex-col">
       <h4 className="text-lg font-medium text-salamtak-brown mb-4">
         {isRTL ? 'تتبع مزاجك' : 'Track Your Mood'}
       </h4>
@@ -26,8 +26,8 @@ const MoodTracker: React.FC<MoodTrackerProps> = ({ onMoodSubmit, mood, setMood }
         {isRTL ? 'كيف تشعر اليوم؟' : 'How are you feeling today?'}
       </p>
       
-      <div className="flex-1">
-        <RadioGroup value={mood} onValueChange={handleMoodChange} className="flex justify-center space-x-8 rtl:space-x-reverse mb-4">
+      <div>
+        <RadioGroup value={mood} onValueChange={handleMoodChange} className="flex justify-center space-x-8 rtl:space-x-reverse mb-6">
           <div className="flex flex-col items-center space-y-2">
             <RadioGroupItem value="happy" id="happy" className="sr-only" />
             <Label 

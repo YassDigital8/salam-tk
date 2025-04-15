@@ -44,8 +44,8 @@ const WellnessContent = () => {
       
       {/* Tabs Section */}
       <section className="py-8 bg-salamtak-cream/20">
-        <div className="salamtak-container overflow-visible">
-          <Tabs defaultValue="consultations" className="overflow-visible">
+        <div className="salamtak-container">
+          <Tabs defaultValue="consultations">
             <TabsList className="w-full max-w-md mx-auto grid grid-cols-3">
               <TabsTrigger value="consultations" className="flex items-center gap-2">
                 <Video size={16} />
@@ -61,16 +61,16 @@ const WellnessContent = () => {
               </TabsTrigger>
             </TabsList>
             
-            <div className="mt-6 overflow-visible">
-              <TabsContent value="consultations" className="overflow-visible m-0">
+            <div className="mt-6">
+              <TabsContent value="consultations" className="m-0">
                 <LiveConsultationSection />
               </TabsContent>
               
-              <TabsContent value="fitness" className="overflow-visible m-0">
+              <TabsContent value="fitness" className="m-0">
                 <FitnessProgramsSection />
               </TabsContent>
               
-              <TabsContent value="mental" className="overflow-visible m-0">
+              <TabsContent value="mental" className="m-0">
                 <MentalWellnessSection />
               </TabsContent>
             </div>
