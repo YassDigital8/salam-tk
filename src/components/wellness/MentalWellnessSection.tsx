@@ -8,6 +8,7 @@ import { Heart, Play, CheckCircle, Smile, Frown, Meh } from 'lucide-react';
 import { mentalWellnessResources } from '@/data/wellness';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
+import { Badge } from '@/components/ui/badge';
 import { 
   Dialog, 
   DialogContent, 
