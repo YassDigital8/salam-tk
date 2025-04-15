@@ -26,46 +26,48 @@ const MoodTracker: React.FC<MoodTrackerProps> = ({ onMoodSubmit, mood, setMood }
         {isRTL ? 'كيف تشعر اليوم؟' : 'How are you feeling today?'}
       </p>
       
-      <RadioGroup value={mood} onValueChange={handleMoodChange} className="flex space-x-4 mb-4">
-        <div className="flex flex-col items-center space-y-2">
-          <RadioGroupItem value="happy" id="happy" className="sr-only" />
-          <Label 
-            htmlFor="happy" 
-            className={`cursor-pointer p-3 rounded-full border-2 ${
-              mood === 'happy' ? 'border-green-500 bg-green-50' : 'border-transparent'
-            }`}
-          >
-            <Smile size={32} className="text-green-500" />
-          </Label>
-          <span className="text-xs">{isRTL ? 'سعيد' : 'Happy'}</span>
-        </div>
-        
-        <div className="flex flex-col items-center space-y-2">
-          <RadioGroupItem value="neutral" id="neutral" className="sr-only" />
-          <Label 
-            htmlFor="neutral" 
-            className={`cursor-pointer p-3 rounded-full border-2 ${
-              mood === 'neutral' ? 'border-amber-500 bg-amber-50' : 'border-transparent'
-            }`}
-          >
-            <Meh size={32} className="text-amber-500" />
-          </Label>
-          <span className="text-xs">{isRTL ? 'محايد' : 'Neutral'}</span>
-        </div>
-        
-        <div className="flex flex-col items-center space-y-2">
-          <RadioGroupItem value="sad" id="sad" className="sr-only" />
-          <Label 
-            htmlFor="sad" 
-            className={`cursor-pointer p-3 rounded-full border-2 ${
-              mood === 'sad' ? 'border-blue-500 bg-blue-50' : 'border-transparent'
-            }`}
-          >
-            <Frown size={32} className="text-blue-500" />
-          </Label>
-          <span className="text-xs">{isRTL ? 'حزين' : 'Sad'}</span>
-        </div>
-      </RadioGroup>
+      <div className="mb-4">
+        <RadioGroup value={mood} onValueChange={handleMoodChange} className="flex justify-center space-x-8 mb-4">
+          <div className="flex flex-col items-center space-y-2">
+            <RadioGroupItem value="happy" id="happy" className="sr-only" />
+            <Label 
+              htmlFor="happy" 
+              className={`cursor-pointer p-4 rounded-full border-2 transition-all ${
+                mood === 'happy' ? 'border-green-500 bg-green-50' : 'border-transparent'
+              }`}
+            >
+              <Smile size={36} className="text-green-500" />
+            </Label>
+            <span className="text-sm">{isRTL ? 'سعيد' : 'Happy'}</span>
+          </div>
+          
+          <div className="flex flex-col items-center space-y-2">
+            <RadioGroupItem value="neutral" id="neutral" className="sr-only" />
+            <Label 
+              htmlFor="neutral" 
+              className={`cursor-pointer p-4 rounded-full border-2 transition-all ${
+                mood === 'neutral' ? 'border-amber-500 bg-amber-50' : 'border-transparent'
+              }`}
+            >
+              <Meh size={36} className="text-amber-500" />
+            </Label>
+            <span className="text-sm">{isRTL ? 'محايد' : 'Neutral'}</span>
+          </div>
+          
+          <div className="flex flex-col items-center space-y-2">
+            <RadioGroupItem value="sad" id="sad" className="sr-only" />
+            <Label 
+              htmlFor="sad" 
+              className={`cursor-pointer p-4 rounded-full border-2 transition-all ${
+                mood === 'sad' ? 'border-blue-500 bg-blue-50' : 'border-transparent'
+              }`}
+            >
+              <Frown size={36} className="text-blue-500" />
+            </Label>
+            <span className="text-sm">{isRTL ? 'حزين' : 'Sad'}</span>
+          </div>
+        </RadioGroup>
+      </div>
       
       <Button 
         className="w-full bg-salamtak-green hover:bg-salamtak-green/90"
@@ -78,7 +80,7 @@ const MoodTracker: React.FC<MoodTrackerProps> = ({ onMoodSubmit, mood, setMood }
         <DialogTrigger asChild>
           <Button 
             variant="link" 
-            className="w-full mt-2 text-xs text-salamtak-brown/70"
+            className="w-full mt-2 text-sm text-salamtak-brown/70"
           >
             {isRTL ? 'عرض سجل المزاج' : 'View Mood History'}
           </Button>
