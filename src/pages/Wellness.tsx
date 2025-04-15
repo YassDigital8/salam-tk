@@ -8,7 +8,6 @@ import Footer from '@/components/Footer';
 import MobileNavigation from '@/components/MobileNavigation';
 import FeatureCard from '@/components/FeatureCard';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Card, CardContent } from '@/components/ui/card';
 import { Video, Heart, Activity } from 'lucide-react';
 import { features } from '@/data';
 import LiveConsultationSection from '@/components/wellness/LiveConsultationSection';
@@ -19,7 +18,7 @@ const WellnessContent = () => {
   const { t, isRTL } = useLanguage();
   
   return (
-    <main className="pb-20 md:pb-0 overflow-x-hidden">
+    <main className="pb-20 md:pb-0">
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-salamtak-light to-white py-8">
         <div className="salamtak-container">
@@ -44,9 +43,9 @@ const WellnessContent = () => {
       </section>
       
       {/* Tabs Section */}
-      <section className="py-8 bg-salamtak-cream/20 overflow-visible">
+      <section className="py-8 bg-salamtak-cream/20">
         <div className="salamtak-container overflow-visible">
-          <Tabs defaultValue="consultations">
+          <Tabs defaultValue="consultations" className="overflow-visible">
             <TabsList className="w-full max-w-md mx-auto grid grid-cols-3">
               <TabsTrigger value="consultations" className="flex items-center gap-2">
                 <Video size={16} />
@@ -62,17 +61,19 @@ const WellnessContent = () => {
               </TabsTrigger>
             </TabsList>
             
-            <TabsContent value="consultations" className="mt-6 overflow-visible">
-              <LiveConsultationSection />
-            </TabsContent>
-            
-            <TabsContent value="fitness" className="mt-6 overflow-visible">
-              <FitnessProgramsSection />
-            </TabsContent>
-            
-            <TabsContent value="mental" className="mt-6 overflow-visible">
-              <MentalWellnessSection />
-            </TabsContent>
+            <div className="mt-6 overflow-visible">
+              <TabsContent value="consultations" className="overflow-visible m-0">
+                <LiveConsultationSection />
+              </TabsContent>
+              
+              <TabsContent value="fitness" className="overflow-visible m-0">
+                <FitnessProgramsSection />
+              </TabsContent>
+              
+              <TabsContent value="mental" className="overflow-visible m-0">
+                <MentalWellnessSection />
+              </TabsContent>
+            </div>
           </Tabs>
         </div>
       </section>
@@ -85,7 +86,7 @@ const Wellness = () => {
   
   return (
     <LanguageProvider>
-      <div className="flex flex-col min-h-screen overflow-x-hidden">
+      <div className="flex flex-col min-h-screen">
         <Header />
         <WellnessContent />
         {!isMobile && <Footer />}

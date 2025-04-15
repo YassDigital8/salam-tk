@@ -49,7 +49,7 @@ const MentalWellnessSection = () => {
 
   return (
     <Card className="overflow-visible">
-      <CardContent className="p-6 overflow-visible">
+      <CardContent className="p-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div>
             <h3 className="text-xl font-semibold text-salamtak-green mb-2">

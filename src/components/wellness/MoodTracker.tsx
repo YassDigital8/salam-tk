@@ -17,7 +17,7 @@ const MoodTracker: React.FC<MoodTrackerProps> = ({ onMoodSubmit, mood, setMood }
   };
   
   return (
-    <Card className="p-4 border-salamtak-sand">
+    <Card className="p-4 border-salamtak-sand h-full flex flex-col">
       <h4 className="text-lg font-medium text-salamtak-brown mb-4">
         {isRTL ? 'تتبع مزاجك' : 'Track Your Mood'}
       </h4>
@@ -26,78 +26,82 @@ const MoodTracker: React.FC<MoodTrackerProps> = ({ onMoodSubmit, mood, setMood }
         {isRTL ? 'كيف تشعر اليوم؟' : 'How are you feeling today?'}
       </p>
       
-      <RadioGroup value={mood} onValueChange={handleMoodChange} className="flex justify-center space-x-8 mb-4">
-        <div className="flex flex-col items-center space-y-2">
-          <RadioGroupItem value="happy" id="happy" className="sr-only" />
-          <Label 
-            htmlFor="happy" 
-            className={`cursor-pointer p-4 rounded-full border-2 transition-all ${
-              mood === 'happy' ? 'border-green-500 bg-green-50' : 'border-transparent'
-            }`}
-          >
-            <Smile size={36} className="text-green-500" />
-          </Label>
-          <span className="text-sm">{isRTL ? 'سعيد' : 'Happy'}</span>
-        </div>
-        
-        <div className="flex flex-col items-center space-y-2">
-          <RadioGroupItem value="neutral" id="neutral" className="sr-only" />
-          <Label 
-            htmlFor="neutral" 
-            className={`cursor-pointer p-4 rounded-full border-2 transition-all ${
-              mood === 'neutral' ? 'border-amber-500 bg-amber-50' : 'border-transparent'
-            }`}
-          >
-            <Meh size={36} className="text-amber-500" />
-          </Label>
-          <span className="text-sm">{isRTL ? 'محايد' : 'Neutral'}</span>
-        </div>
-        
-        <div className="flex flex-col items-center space-y-2">
-          <RadioGroupItem value="sad" id="sad" className="sr-only" />
-          <Label 
-            htmlFor="sad" 
-            className={`cursor-pointer p-4 rounded-full border-2 transition-all ${
-              mood === 'sad' ? 'border-blue-500 bg-blue-50' : 'border-transparent'
-            }`}
-          >
-            <Frown size={36} className="text-blue-500" />
-          </Label>
-          <span className="text-sm">{isRTL ? 'حزين' : 'Sad'}</span>
-        </div>
-      </RadioGroup>
-      
-      <Button 
-        className="w-full bg-salamtak-green hover:bg-salamtak-green/90"
-        onClick={onMoodSubmit}
-      >
-        {isRTL ? 'تسجيل المزاج' : 'Log Mood'}
-      </Button>
-      
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button 
-            variant="link" 
-            className="w-full mt-2 text-sm text-salamtak-brown/70"
-          >
-            {isRTL ? 'عرض سجل المزاج' : 'View Mood History'}
-          </Button>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>
-              {isRTL ? 'سجل المزاج' : 'Mood History'}
-            </DialogTitle>
-          </DialogHeader>
-          <div className="py-4">
-            <p className="text-center text-salamtak-brown/70 italic">
-              {isRTL 
-                ? 'سجل مزاجك لبضعة أيام لرؤية المخطط البياني هنا' 
-                : 'Log your mood for a few days to see the chart here'}
-            </p>
+      <div className="flex-1">
+        <RadioGroup value={mood} onValueChange={handleMoodChange} className="flex justify-center space-x-8 rtl:space-x-reverse mb-4">
+          <div className="flex flex-col items-center space-y-2">
+            <RadioGroupItem value="happy" id="happy" className="sr-only" />
+            <Label 
+              htmlFor="happy" 
+              className={`cursor-pointer p-3 rounded-full border-2 transition-all ${
+                mood === 'happy' ? 'border-green-500 bg-green-50' : 'border-transparent'
+              }`}
+            >
+              <Smile size={32} className="text-green-500" />
+            </Label>
+            <span className="text-sm">{isRTL ? 'سعيد' : 'Happy'}</span>
           </div>
-        </DialogContent>
-      </Dialog>
+          
+          <div className="flex flex-col items-center space-y-2">
+            <RadioGroupItem value="neutral" id="neutral" className="sr-only" />
+            <Label 
+              htmlFor="neutral" 
+              className={`cursor-pointer p-3 rounded-full border-2 transition-all ${
+                mood === 'neutral' ? 'border-amber-500 bg-amber-50' : 'border-transparent'
+              }`}
+            >
+              <Meh size={32} className="text-amber-500" />
+            </Label>
+            <span className="text-sm">{isRTL ? 'محايد' : 'Neutral'}</span>
+          </div>
+          
+          <div className="flex flex-col items-center space-y-2">
+            <RadioGroupItem value="sad" id="sad" className="sr-only" />
+            <Label 
+              htmlFor="sad" 
+              className={`cursor-pointer p-3 rounded-full border-2 transition-all ${
+                mood === 'sad' ? 'border-blue-500 bg-blue-50' : 'border-transparent'
+              }`}
+            >
+              <Frown size={32} className="text-blue-500" />
+            </Label>
+            <span className="text-sm">{isRTL ? 'حزين' : 'Sad'}</span>
+          </div>
+        </RadioGroup>
+      </div>
+      
+      <div className="mt-auto">
+        <Button 
+          className="w-full bg-salamtak-green hover:bg-salamtak-green/90"
+          onClick={onMoodSubmit}
+        >
+          {isRTL ? 'تسجيل المزاج' : 'Log Mood'}
+        </Button>
+        
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button 
+              variant="link" 
+              className="w-full mt-2 text-sm text-salamtak-brown/70"
+            >
+              {isRTL ? 'عرض سجل المزاج' : 'View Mood History'}
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>
+                {isRTL ? 'سجل المزاج' : 'Mood History'}
+              </DialogTitle>
+            </DialogHeader>
+            <div className="py-4">
+              <p className="text-center text-salamtak-brown/70 italic">
+                {isRTL 
+                  ? 'سجل مزاجك لبضعة أيام لرؤية المخطط البياني هنا' 
+                  : 'Log your mood for a few days to see the chart here'}
+              </p>
+            </div>
+          </DialogContent>
+        </Dialog>
+      </div>
     </Card>
   );
 };
