@@ -1,3 +1,4 @@
+
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
 type Language = 'en' | 'ar';
@@ -134,8 +135,93 @@ const translations: TranslationProps = {
     ar: 'دقيقة'
   },
   footer: {
-    en: 'Salam-tak - Your Natural Path to Wellness',
+    en: 'Salam-tk - Your Natural Path to Wellness',
     ar: 'سلام-تك - طريقك الطبيعي للعافية',
+  },
+  // New translations for wellness sections
+  confirmBooking: {
+    en: 'Confirm Booking',
+    ar: 'تأكيد الحجز'
+  },
+  date: {
+    en: 'Date',
+    ar: 'التاريخ'
+  },
+  time: {
+    en: 'Time',
+    ar: 'الوقت'
+  },
+  consultationType: {
+    en: 'Consultation Type',
+    ar: 'نوع الاستشارة'
+  },
+  cancel: {
+    en: 'Cancel',
+    ar: 'إلغاء'
+  },
+  startProgram: {
+    en: 'Start Program',
+    ar: 'بدء البرنامج'
+  },
+  programStarted: {
+    en: 'Program Started',
+    ar: 'بدأت البرنامج'
+  },
+  preview: {
+    en: 'Preview',
+    ar: 'معاينة'
+  },
+  progress: {
+    en: 'Your progress',
+    ar: 'تقدمك'
+  },
+  trackMood: {
+    en: 'Track Your Mood',
+    ar: 'تتبع مزاجك'
+  },
+  howFeeling: {
+    en: 'How are you feeling today?',
+    ar: 'كيف تشعر اليوم؟'
+  },
+  happy: {
+    en: 'Happy',
+    ar: 'سعيد'
+  },
+  neutral: {
+    en: 'Neutral',
+    ar: 'محايد'
+  },
+  sad: {
+    en: 'Sad',
+    ar: 'حزين'
+  },
+  logMood: {
+    en: 'Log Mood',
+    ar: 'تسجيل المزاج'
+  },
+  viewMoodHistory: {
+    en: 'View Mood History',
+    ar: 'عرض سجل المزاج'
+  },
+  moodHistory: {
+    en: 'Mood History',
+    ar: 'سجل المزاج'
+  },
+  dailyJournal: {
+    en: 'Daily Journal',
+    ar: 'التدوين اليومي'
+  },
+  writeThoughts: {
+    en: 'Write down your thoughts and feelings',
+    ar: 'دوّن أفكارك ومشاعرك'
+  },
+  saveEntry: {
+    en: 'Save Entry',
+    ar: 'حفظ'
+  },
+  guidedMeditation: {
+    en: 'Guided Meditation Sessions',
+    ar: 'جلسات التأمل الموجهة'
   }
 };
 

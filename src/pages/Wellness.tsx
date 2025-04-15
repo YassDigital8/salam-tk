@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -8,8 +9,14 @@ import MobileNavigation from '@/components/MobileNavigation';
 import FeatureCard from '@/components/FeatureCard';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent } from '@/components/ui/card';
-import { Video, Heart, Activity } from 'lucide-react';
+import { Video, Heart, Activity, Calendar, Clock, Play, User, CheckCircle } from 'lucide-react';
 import { features } from '@/data';
+import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
+import { useToast } from '@/hooks/use-toast';
+import LiveConsultationSection from '@/components/wellness/LiveConsultationSection';
+import FitnessProgramsSection from '@/components/wellness/FitnessProgramsSection';
+import MentalWellnessSection from '@/components/wellness/MentalWellnessSection';
 
 const WellnessContent = () => {
   const { t, isRTL } = useLanguage();
@@ -59,111 +66,15 @@ const WellnessContent = () => {
             </TabsList>
             
             <TabsContent value="consultations" className="mt-6">
-              <Card>
-                <CardContent className="p-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <h3 className="text-xl font-semibold text-salamtak-green mb-2">
-                        {isRTL ? 'استشارات مباشرة' : 'Live Consultations'}
-                      </h3>
-                      <p className="text-salamtak-brown/80 mb-4">
-                        {isRTL 
-                          ? 'تواصل مع خبراء العافية عبر الفيديو أو الدردشة للحصول على نصائح مخصصة.' 
-                          : 'Connect with wellness experts via video or chat for personalized advice.'}
-                      </p>
-                      <ul className="space-y-2">
-                        <li className="flex items-center gap-2">
-                          <div className="w-2 h-2 rounded-full bg-salamtak-green"></div>
-                          <span>{isRTL ? 'استشارات في الطب البديل' : 'Alternative Medicine Consultations'}</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <div className="w-2 h-2 rounded-full bg-salamtak-green"></div>
-                          <span>{isRTL ? 'استشارات التغذية' : 'Nutrition Consultations'}</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <div className="w-2 h-2 rounded-full bg-salamtak-green"></div>
-                          <span>{isRTL ? 'استشارات اللياقة البدنية' : 'Fitness Consultations'}</span>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="flex items-center justify-center">
-                      <img src="/placeholder.svg" alt="Consultation" className="max-w-full rounded-lg shadow-md" />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              <LiveConsultationSection />
             </TabsContent>
             
             <TabsContent value="fitness" className="mt-6">
-              <Card>
-                <CardContent className="p-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <h3 className="text-xl font-semibold text-salamtak-green mb-2">
-                        {isRTL ? 'برامج اللياقة المنزلية' : 'Home Fitness Programs'}
-                      </h3>
-                      <p className="text-salamtak-brown/80 mb-4">
-                        {isRTL 
-                          ? 'تمارين مخصصة تتكيف مع أهدافك الصحية وقدراتك.' 
-                          : 'Customized workouts that adapt to your health goals and abilities.'}
-                      </p>
-                      <ul className="space-y-2">
-                        <li className="flex items-center gap-2">
-                          <div className="w-2 h-2 rounded-full bg-salamtak-green"></div>
-                          <span>{isRTL ? 'تمارين منزلية بسيطة' : 'Simple Home Exercises'}</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <div className="w-2 h-2 rounded-full bg-salamtak-green"></div>
-                          <span>{isRTL ? 'برامج تمارين لكبار السن' : 'Senior-friendly Programs'}</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <div className="w-2 h-2 rounded-full bg-salamtak-green"></div>
-                          <span>{isRTL ? 'تمارين للآلام المزمنة' : 'Exercises for Chronic Pain'}</span>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="flex items-center justify-center">
-                      <img src="/placeholder.svg" alt="Fitness" className="max-w-full rounded-lg shadow-md" />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              <FitnessProgramsSection />
             </TabsContent>
             
             <TabsContent value="mental" className="mt-6">
-              <Card>
-                <CardContent className="p-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <h3 className="text-xl font-semibold text-salamtak-green mb-2">
-                        {isRTL ? 'العافية النفسية' : 'Mental Wellness'}
-                      </h3>
-                      <p className="text-salamtak-brown/80 mb-4">
-                        {isRTL 
-                          ? 'تتبع حالتك المزاجية ومارس التأمل الموجه لصحة نفسية أفضل.' 
-                          : 'Track your mood and practice guided meditation for better mental health.'}
-                      </p>
-                      <ul className="space-y-2">
-                        <li className="flex items-center gap-2">
-                          <div className="w-2 h-2 rounded-full bg-salamtak-green"></div>
-                          <span>{isRTL ? 'جلسات تأمل موجهة' : 'Guided Meditations'}</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <div className="w-2 h-2 rounded-full bg-salamtak-green"></div>
-                          <span>{isRTL ? 'نصائح لتقليل التوتر' : 'Stress Reduction Tips'}</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <div className="w-2 h-2 rounded-full bg-salamtak-green"></div>
-                          <span>{isRTL ? 'تتبع الحالة المزاجية' : 'Mood Tracking'}</span>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="flex items-center justify-center">
-                      <img src="/placeholder.svg" alt="Mental wellness" className="max-w-full rounded-lg shadow-md" />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              <MentalWellnessSection />
             </TabsContent>
           </Tabs>
         </div>
