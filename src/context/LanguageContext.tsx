@@ -16,7 +16,6 @@ interface TranslationProps {
   };
 }
 
-// Updated translations with new app name
 const translations: TranslationProps = {
   appName: {
     en: 'Salam-tak',
@@ -147,7 +146,6 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
 
   const isRTL = language === 'ar';
   
-  // Apply HTML lang and dir attributes
   React.useEffect(() => {
     document.documentElement.lang = language;
     document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
