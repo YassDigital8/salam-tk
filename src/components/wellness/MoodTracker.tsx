@@ -12,6 +12,10 @@ import type { MoodTrackerProps } from './types';
 const MoodTracker: React.FC<MoodTrackerProps> = ({ onMoodSubmit, mood, setMood }) => {
   const { isRTL, t } = useLanguage();
   
+  const handleMoodChange = (value: string) => {
+    setMood(value);
+  };
+  
   return (
     <Card className="p-4 border-salamtak-sand">
       <h4 className="text-lg font-medium text-salamtak-brown mb-4">
@@ -22,7 +26,7 @@ const MoodTracker: React.FC<MoodTrackerProps> = ({ onMoodSubmit, mood, setMood }
         {isRTL ? 'كيف تشعر اليوم؟' : 'How are you feeling today?'}
       </p>
       
-      <RadioGroup value={mood} onValueChange={setMood} className="flex space-x-4 mb-4">
+      <RadioGroup value={mood} onValueChange={handleMoodChange} className="flex space-x-4 mb-4">
         <div className="flex flex-col items-center space-y-2">
           <RadioGroupItem value="happy" id="happy" className="sr-only" />
           <Label 
