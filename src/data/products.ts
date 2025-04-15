@@ -13,6 +13,8 @@ export interface Product {
   price: number;
   image: string;
   rating: number;
+  inStock: boolean;
+  isFeatured?: boolean;
 }
 
 export const products: Product[] = [
@@ -29,7 +31,9 @@ export const products: Product[] = [
     category: 'herbs',
     price: 12.99,
     image: '/lovable-uploads/babong.jfif',
-    rating: 4.7
+    rating: 4.7,
+    inStock: true,
+    isFeatured: true
   },
   {
     id: 'prod2',
@@ -44,7 +48,9 @@ export const products: Product[] = [
     category: 'tea',
     price: 15.99,
     image: '/lovable-uploads/rose_hip.jfif',
-    rating: 4.5
+    rating: 4.5,
+    inStock: true,
+    isFeatured: true
   },
   {
     id: 'prod3',
@@ -59,7 +65,9 @@ export const products: Product[] = [
     category: 'cosmetics',
     price: 29.99,
     image: '/placeholder.svg',
-    rating: 4.8
+    rating: 4.8,
+    inStock: true,
+    isFeatured: true
   },
   {
     id: 'prod4',
@@ -74,7 +82,8 @@ export const products: Product[] = [
     category: 'supplements',
     price: 22.50,
     image: '/placeholder.svg',
-    rating: 4.6
+    rating: 4.6,
+    inStock: true
   },
   {
     id: 'prod5',
@@ -89,7 +98,8 @@ export const products: Product[] = [
     category: 'home',
     price: 18.99,
     image: '/placeholder.svg',
-    rating: 4.9
+    rating: 4.9,
+    inStock: true
   },
   {
     id: 'prod6',
@@ -104,6 +114,39 @@ export const products: Product[] = [
     category: 'home',
     price: 24.99,
     image: '/placeholder.svg',
-    rating: 4.7
+    rating: 4.7,
+    inStock: true
+  },
+  {
+    id: 'prod7',
+    name: {
+      en: 'Fresh Mint Leaves',
+      ar: 'أوراق النعناع الطازجة'
+    },
+    description: {
+      en: 'Freshly harvested mint leaves for tea and cooking.',
+      ar: 'أوراق نعناع مقطوفة حديثًا للشاي والطبخ.'
+    },
+    category: 'herbs',
+    price: 8.99,
+    image: '/placeholder.svg',
+    rating: 4.6,
+    inStock: true
+  },
+  {
+    id: 'prod8',
+    name: {
+      en: 'Basil Seedlings',
+      ar: 'شتلات الريحان'
+    },
+    description: {
+      en: 'Organic basil seedlings ready to grow at home.',
+      ar: 'شتلات ريحان عضوية جاهزة للنمو في المنزل.'
+    },
+    category: 'herbs',
+    price: 6.50,
+    image: '/placeholder.svg',
+    rating: 4.3,
+    inStock: true
   }
 ];

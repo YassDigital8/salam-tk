@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { useLanguage } from '@/context/LanguageContext';
@@ -11,12 +12,33 @@ import FeatureCard from '@/components/FeatureCard';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, ArrowLeft, ShoppingBag, CalendarDays } from 'lucide-react';
 import { products, services, features } from '@/data';
+import { useNavigate } from 'react-router-dom';
+import { toast } from '@/hooks/use-toast';
 
 const MainContent = () => {
   const { t, isRTL } = useLanguage();
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
   
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
+  
+  const handleExploreProducts = () => {
+    toast({
+      title: t('exploreProductsTitle'),
+      description: t('exploreProductsDescription'),
+    });
+    navigate('/products');
+  };
+  
+  const handleBookService = () => {
+    toast({
+      title: t('bookServiceTitle'),
+      description: t('bookServiceDescription'),
+    });
+    navigate('/services');
+  };
+  
+  const featuredProducts = products.filter(product => product.isFeatured);
   
   return (
     <main className={isMobile ? 'pb-20' : ''}>
@@ -32,11 +54,18 @@ const MainContent = () => {
                 {t('heroSubtitle')}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center md:justify-start">
-                <Button className="bg-salamtak-green hover:bg-salamtak-green/90 gap-2">
+                <Button 
+                  className="bg-salamtak-green hover:bg-salamtak-green/90 gap-2"
+                  onClick={handleExploreProducts}
+                >
                   <ShoppingBag size={18} />
                   {t('exploreProducts')}
                 </Button>
-                <Button variant="outline" className="border-salamtak-blue text-salamtak-blue hover:bg-salamtak-blue/10 gap-2 mt-3 sm:mt-0">
+                <Button 
+                  variant="outline" 
+                  className="border-salamtak-blue text-salamtak-blue hover:bg-salamtak-blue/10 gap-2 mt-3 sm:mt-0"
+                  onClick={handleBookService}
+                >
                   <CalendarDays size={18} />
                   {t('bookService')}
                 </Button>
@@ -61,20 +90,28 @@ const MainContent = () => {
               <h2 className="section-title">{t('productsTitle')}</h2>
               <p className="section-subtitle text-base md:text-lg">{t('productsSubtitle')}</p>
             </div>
-            <Button variant="ghost" className="text-salamtak-green hidden md:flex items-center gap-1">
+            <Button 
+              variant="ghost" 
+              className="text-salamtak-green hidden md:flex items-center gap-1"
+              onClick={() => navigate('/products')}
+            >
               <span>{t('viewAll')}</span>
               <ArrowIcon size={16} />
             </Button>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {products.slice(0, isMobile ? 2 : 3).map((product) => (
+            {featuredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
           
           <div className="mt-6 md:mt-8 text-center">
-            <Button variant="outline" className="text-salamtak-green border-salamtak-green">
+            <Button 
+              variant="outline" 
+              className="text-salamtak-green border-salamtak-green"
+              onClick={() => navigate('/products')}
+            >
               {t('viewAll')}
             </Button>
           </div>
@@ -89,7 +126,11 @@ const MainContent = () => {
               <h2 className="section-title">{t('servicesTitle')}</h2>
               <p className="section-subtitle text-base md:text-lg">{t('servicesSubtitle')}</p>
             </div>
-            <Button variant="ghost" className="text-salamtak-blue hidden md:flex items-center gap-1">
+            <Button 
+              variant="ghost" 
+              className="text-salamtak-blue hidden md:flex items-center gap-1"
+              onClick={() => navigate('/services')}
+            >
               <span>{t('viewAll')}</span>
               <ArrowIcon size={16} />
             </Button>
@@ -102,7 +143,11 @@ const MainContent = () => {
           </div>
           
           <div className="mt-6 md:mt-8 text-center">
-            <Button variant="outline" className="text-salamtak-blue border-salamtak-blue">
+            <Button 
+              variant="outline" 
+              className="text-salamtak-blue border-salamtak-blue"
+              onClick={() => navigate('/services')}
+            >
               {t('viewAll')}
             </Button>
           </div>
