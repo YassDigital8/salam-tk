@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { LanguageProvider } from '@/context/LanguageContext';
@@ -34,7 +33,6 @@ import * as z from 'zod';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 
-// Define the form schema
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -44,7 +42,6 @@ const formSchema = z.object({
   notes: z.string().optional(),
 });
 
-// Generate time slots based on service duration
 const generateTimeSlots = (serviceDuration: number) => {
   const slots = [];
   const startHour = 9; // 9 AM
@@ -70,14 +67,12 @@ const BookingContent = () => {
   const { t, isRTL, language } = useLanguage();
   const { toast } = useToast();
   
-  // Find the service by ID
   const service = services.find(s => s.id === serviceId);
   
-  // State for the form
   const [timeSlots, setTimeSlots] = useState<string[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  const [calendarOpen, setCalendarOpen] = useState(false);
   
-  // Setup react-hook-form
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -88,7 +83,6 @@ const BookingContent = () => {
     },
   });
   
-  // Generate time slots when service changes
   useEffect(() => {
     if (service) {
       const slots = generateTimeSlots(service.duration);
@@ -96,11 +90,9 @@ const BookingContent = () => {
     }
   }, [service]);
 
-  // Handle form submission
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     console.log("Booking data:", data);
     
-    // Show success toast
     toast({
       title: isRTL ? "تم الحجز بنجاح!" : "Booking Successful!",
       description: isRTL 
@@ -108,13 +100,11 @@ const BookingContent = () => {
         : `Your ${service?.name[language]} appointment has been booked for ${format(data.date, 'PPP')} at ${data.time}`,
     });
     
-    // Navigate back to services page
     setTimeout(() => {
       navigate('/services');
     }, 2000);
   };
   
-  // If service not found
   if (!service) {
     return (
       <div className="salamtak-container py-12 text-center">
@@ -130,7 +120,6 @@ const BookingContent = () => {
   
   return (
     <main className="pb-20 md:pb-0">
-      {/* Hero Section */}
       <section className="bg-gradient-to-b from-salamtak-light to-white py-8">
         <div className="salamtak-container">
           <div className="flex items-center gap-4">
@@ -154,11 +143,9 @@ const BookingContent = () => {
         </div>
       </section>
       
-      {/* Booking Form Section */}
       <section className="py-8">
         <div className="salamtak-container max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Service Info */}
             <div className="md:col-span-1">
               <Card>
                 <CardContent className="p-6">
@@ -188,18 +175,16 @@ const BookingContent = () => {
               </Card>
             </div>
             
-            {/* Booking Form */}
             <div className="md:col-span-2">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  {/* Select Date */}
                   <FormField
                     control={form.control}
                     name="date"
                     render={({ field }) => (
                       <FormItem className="flex flex-col">
                         <FormLabel>{isRTL ? "اختر التاريخ" : "Select Date"}</FormLabel>
-                        <Popover>
+                        <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
                           <PopoverTrigger asChild>
                             <FormControl>
                               <Button
@@ -225,6 +210,7 @@ const BookingContent = () => {
                               onSelect={(date) => {
                                 field.onChange(date);
                                 setSelectedDate(date);
+                                setCalendarOpen(false);
                               }}
                               disabled={(date) => 
                                 isBefore(date, new Date()) || 
@@ -240,7 +226,6 @@ const BookingContent = () => {
                     )}
                   />
                   
-                  {/* Select Time Slot */}
                   <FormField
                     control={form.control}
                     name="time"
@@ -268,7 +253,6 @@ const BookingContent = () => {
                     )}
                   />
                   
-                  {/* Personal Information */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <FormField
                       control={form.control}
