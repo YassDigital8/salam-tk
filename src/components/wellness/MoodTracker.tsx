@@ -17,7 +17,7 @@ const MoodTracker: React.FC<MoodTrackerProps> = ({ onMoodSubmit, mood, setMood }
   };
   
   return (
-    <Card className="p-4 border-salamtak-sand flex flex-col">
+    <Card className="p-4 border-salamtak-sand">
       <h4 className="text-lg font-medium text-salamtak-brown mb-4">
         {isRTL ? 'تتبع مزاجك' : 'Track Your Mood'}
       </h4>
@@ -26,50 +26,48 @@ const MoodTracker: React.FC<MoodTrackerProps> = ({ onMoodSubmit, mood, setMood }
         {isRTL ? 'كيف تشعر اليوم؟' : 'How are you feeling today?'}
       </p>
       
-      <div>
-        <RadioGroup value={mood} onValueChange={handleMoodChange} className="flex justify-center space-x-8 rtl:space-x-reverse mb-6">
-          <div className="flex flex-col items-center space-y-2">
-            <RadioGroupItem value="happy" id="happy" className="sr-only" />
-            <Label 
-              htmlFor="happy" 
-              className={`cursor-pointer p-3 rounded-full border-2 transition-all ${
-                mood === 'happy' ? 'border-green-500 bg-green-50' : 'border-transparent'
-              }`}
-            >
-              <Smile size={32} className="text-green-500" />
-            </Label>
-            <span className="text-sm">{isRTL ? 'سعيد' : 'Happy'}</span>
-          </div>
-          
-          <div className="flex flex-col items-center space-y-2">
-            <RadioGroupItem value="neutral" id="neutral" className="sr-only" />
-            <Label 
-              htmlFor="neutral" 
-              className={`cursor-pointer p-3 rounded-full border-2 transition-all ${
-                mood === 'neutral' ? 'border-amber-500 bg-amber-50' : 'border-transparent'
-              }`}
-            >
-              <Meh size={32} className="text-amber-500" />
-            </Label>
-            <span className="text-sm">{isRTL ? 'محايد' : 'Neutral'}</span>
-          </div>
-          
-          <div className="flex flex-col items-center space-y-2">
-            <RadioGroupItem value="sad" id="sad" className="sr-only" />
-            <Label 
-              htmlFor="sad" 
-              className={`cursor-pointer p-3 rounded-full border-2 transition-all ${
-                mood === 'sad' ? 'border-blue-500 bg-blue-50' : 'border-transparent'
-              }`}
-            >
-              <Frown size={32} className="text-blue-500" />
-            </Label>
-            <span className="text-sm">{isRTL ? 'حزين' : 'Sad'}</span>
-          </div>
-        </RadioGroup>
-      </div>
+      <RadioGroup value={mood} onValueChange={handleMoodChange} className="flex justify-center space-x-8 rtl:space-x-reverse mb-6">
+        <div className="flex flex-col items-center space-y-2">
+          <RadioGroupItem value="happy" id="happy" className="sr-only" />
+          <Label 
+            htmlFor="happy" 
+            className={`cursor-pointer p-3 rounded-full border-2 transition-all ${
+              mood === 'happy' ? 'border-green-500 bg-green-50' : 'border-transparent'
+            }`}
+          >
+            <Smile size={32} className="text-green-500" />
+          </Label>
+          <span className="text-sm">{isRTL ? 'سعيد' : 'Happy'}</span>
+        </div>
+        
+        <div className="flex flex-col items-center space-y-2">
+          <RadioGroupItem value="neutral" id="neutral" className="sr-only" />
+          <Label 
+            htmlFor="neutral" 
+            className={`cursor-pointer p-3 rounded-full border-2 transition-all ${
+              mood === 'neutral' ? 'border-amber-500 bg-amber-50' : 'border-transparent'
+            }`}
+          >
+            <Meh size={32} className="text-amber-500" />
+          </Label>
+          <span className="text-sm">{isRTL ? 'محايد' : 'Neutral'}</span>
+        </div>
+        
+        <div className="flex flex-col items-center space-y-2">
+          <RadioGroupItem value="sad" id="sad" className="sr-only" />
+          <Label 
+            htmlFor="sad" 
+            className={`cursor-pointer p-3 rounded-full border-2 transition-all ${
+              mood === 'sad' ? 'border-blue-500 bg-blue-50' : 'border-transparent'
+            }`}
+          >
+            <Frown size={32} className="text-blue-500" />
+          </Label>
+          <span className="text-sm">{isRTL ? 'حزين' : 'Sad'}</span>
+        </div>
+      </RadioGroup>
       
-      <div className="mt-auto">
+      <div className="mt-4">
         <Button 
           className="w-full bg-salamtak-green hover:bg-salamtak-green/90"
           onClick={onMoodSubmit}
