@@ -2,19 +2,21 @@ import React from 'react';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import MobileNavigation from '@/components/MobileNavigation';
 import ProductCard from '@/components/ProductCard';
 import ProductCategorySelector from '@/components/ProductCategorySelector';
 import { Button } from '@/components/ui/button';
-import { Search } from 'lucide-react';
+import { Search, ArrowLeft } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { products, productCategories } from '@/data';
 import { useState } from 'react';
 
 const ProductsContent = () => {
   const { t, isRTL } = useLanguage();
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   
@@ -34,12 +36,24 @@ const ProductsContent = () => {
     <main className="pb-20 md:pb-0">
       <section className="bg-salamtak-light py-8">
         <div className="salamtak-container">
-          <h1 className="text-3xl font-bold text-salamtak-green mb-2">
-            {t('productsTitle')}
-          </h1>
-          <p className="text-salamtak-brown/80 max-w-lg">
-            {t('productsSubtitle')}
-          </p>
+          <div className="flex items-center gap-4">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={() => navigate('/')}
+              className="text-salamtak-brown hover:text-salamtak-green"
+            >
+              <ArrowLeft size={24} />
+            </Button>
+            <div>
+              <h1 className="text-3xl font-bold text-salamtak-green mb-2">
+                {t('productsTitle')}
+              </h1>
+              <p className="text-salamtak-brown/80 max-w-lg">
+                {t('productsSubtitle')}
+              </p>
+            </div>
+          </div>
         </div>
       </section>
       
