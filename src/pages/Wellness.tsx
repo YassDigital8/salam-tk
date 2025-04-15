@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -9,11 +9,8 @@ import MobileNavigation from '@/components/MobileNavigation';
 import FeatureCard from '@/components/FeatureCard';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent } from '@/components/ui/card';
-import { Video, Heart, Activity, Calendar, Clock, Play, User, CheckCircle } from 'lucide-react';
+import { Video, Heart, Activity } from 'lucide-react';
 import { features } from '@/data';
-import { Button } from '@/components/ui/button';
-import { useNavigate } from 'react-router-dom';
-import { useToast } from '@/hooks/use-toast';
 import LiveConsultationSection from '@/components/wellness/LiveConsultationSection';
 import FitnessProgramsSection from '@/components/wellness/FitnessProgramsSection';
 import MentalWellnessSection from '@/components/wellness/MentalWellnessSection';
@@ -22,7 +19,7 @@ const WellnessContent = () => {
   const { t, isRTL } = useLanguage();
   
   return (
-    <main className="pb-20 md:pb-0">
+    <main className="pb-20 md:pb-0 overflow-x-hidden">
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-salamtak-light to-white py-8">
         <div className="salamtak-container">
@@ -47,8 +44,8 @@ const WellnessContent = () => {
       </section>
       
       {/* Tabs Section */}
-      <section className="py-8 bg-salamtak-cream/20">
-        <div className="salamtak-container">
+      <section className="py-8 bg-salamtak-cream/20 overflow-visible">
+        <div className="salamtak-container overflow-visible">
           <Tabs defaultValue="consultations">
             <TabsList className="w-full max-w-md mx-auto grid grid-cols-3">
               <TabsTrigger value="consultations" className="flex items-center gap-2">
@@ -65,15 +62,15 @@ const WellnessContent = () => {
               </TabsTrigger>
             </TabsList>
             
-            <TabsContent value="consultations" className="mt-6">
+            <TabsContent value="consultations" className="mt-6 overflow-visible">
               <LiveConsultationSection />
             </TabsContent>
             
-            <TabsContent value="fitness" className="mt-6">
+            <TabsContent value="fitness" className="mt-6 overflow-visible">
               <FitnessProgramsSection />
             </TabsContent>
             
-            <TabsContent value="mental" className="mt-6">
+            <TabsContent value="mental" className="mt-6 overflow-visible">
               <MentalWellnessSection />
             </TabsContent>
           </Tabs>
@@ -88,7 +85,7 @@ const Wellness = () => {
   
   return (
     <LanguageProvider>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen overflow-x-hidden">
         <Header />
         <WellnessContent />
         {!isMobile && <Footer />}
