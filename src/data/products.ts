@@ -28,7 +28,7 @@ export const products: Product[] = [
     },
     category: 'herbs',
     price: 12.99,
-    image: '/lovable-uploads/babong.jfif',
+    image: '/lovable-uploads/https://th.bing.com/th/id/OIP.i5P1MGEmIhYxHwpl7S8HKQHaEo?rs=1&pid=ImgDetMain',
     rating: 4.7
   },
   {
@@ -43,7 +43,7 @@ export const products: Product[] = [
     },
     category: 'tea',
     price: 15.99,
-    image: '/placeholder.svg',
+    image: '/lovable-uploads/rose_hip.jfif',
     rating: 4.5
   },
   {
