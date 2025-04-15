@@ -18,7 +18,7 @@ interface TranslationProps {
 
 const translations: TranslationProps = {
   appName: {
-    en: 'Salam-tak',
+    en: 'Salam-tk',
     ar: 'سلام-تك',
   },
   home: {
