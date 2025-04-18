@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
@@ -54,6 +53,19 @@ const ProductCard = ({ product }: ProductCardProps) => {
   };
   
   const addToCart = () => {
+    const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+    
+    if (!isAuthenticated) {
+      toast({
+        title: isRTL ? 'تسجيل الدخول مطلوب' : 'Authentication Required',
+        description: isRTL 
+          ? 'يرجى تسجيل الدخول لإضافة المنتجات إلى سلة التسوق' 
+          : 'Please sign in to add products to your cart',
+      });
+      navigate('/auth');
+      return;
+    }
+
     toast({
       title: isRTL ? 'تمت الإضافة إلى السلة' : 'Added to cart',
       description: `${product.name[language]} × ${quantity}`,
@@ -61,8 +73,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
   };
   
   const viewDetails = () => {
-    // This would navigate to a product details page in a real app
-    // For now we'll just show a toast
     toast({
       title: isRTL ? 'عرض تفاصيل المنتج' : 'View product details',
       description: product.name[language],
