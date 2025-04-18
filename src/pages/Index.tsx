@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { useLanguage } from '@/context/LanguageContext';
@@ -222,14 +221,12 @@ const Index = () => {
   const isMobile = useIsMobile();
   
   return (
-    <LanguageProvider>
-      <div className="flex flex-col min-h-screen">
-        <Header />
-        <MainContent />
-        {!isMobile && <Footer />}
-        {isMobile && <MobileNavigation />}
-      </div>
-    </LanguageProvider>
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <MainContent />
+      {!isMobile && <Footer />}
+      {isMobile && <MobileNavigation />}
+    </div>
   );
 };
 
