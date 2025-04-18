@@ -13,6 +13,7 @@ import Booking from "./pages/Booking";
 import Wellness from "./pages/Wellness";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
+import HealthProfile from "./pages/HealthProfile";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,12 @@ const App = () => {
       return <Navigate to="/auth" replace />;
     }
     
+    // Check if health profile exists
+    const healthProfile = localStorage.getItem('healthProfile');
+    if (!healthProfile && window.location.pathname !== '/health-profile') {
+      return <Navigate to="/health-profile" replace />;
+    }
+    
     return <>{children}</>;
   };
 
@@ -54,6 +61,14 @@ const App = () => {
                 <Route path="/auth" element={
                   isAuthenticated ? <Navigate to="/" replace /> : <Auth />
                 } />
+                <Route
+                  path="/health-profile"
+                  element={
+                    <ProtectedRoute>
+                      <HealthProfile />
+                    </ProtectedRoute>
+                  }
+                />
                 <Route
                   path="/"
                   element={

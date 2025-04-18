@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -10,22 +9,19 @@ const Auth = () => {
   const { t, isRTL } = useLanguage();
   const navigate = useNavigate();
   
-  // Temporary navigation until Supabase is integrated
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
       title: isRTL ? "تم تسجيل الدخول بنجاح" : "Successfully logged in",
       description: isRTL ? "جاري تحويلك..." : "Redirecting you...",
     });
-    // Set authentication to true in localStorage to persist the login
     localStorage.setItem('isAuthenticated', 'true');
-    navigate('/');
+    navigate('/health-profile');
   };
 
   return (
     <div className="min-h-screen bg-salamtak-cream flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-sm">
-        {/* Logo */}
         <div className="text-center mb-8">
           <img 
             src="/lovable-uploads/a59638cc-4815-4280-b8ec-e299cbe65d0e.png" 
@@ -37,7 +33,6 @@ const Auth = () => {
           </h1>
         </div>
 
-        {/* Auth Form */}
         <div className="bg-white rounded-lg shadow-lg p-6">
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
