@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -121,7 +122,7 @@ const BodyModelInteractive = ({ onClose }: BodyModelInteractiveProps) => {
         id: uuidv4(),
         role: 'assistant',
         content: isRTL
-          ? 'شكراً لم��اركة مشاعرك. بناءً على ما وصفته، أقترح عليك تجربة شاي البابونج المهدئ أو حجز جلسة استشارية مع أخصائي الطب البديل لدينا.'
+          ? 'شكراً لمشاركة مشاعرك. بناءً على ما وصفته، أقترح عليك تجربة شاي البابونج المهدئ أو حجز جلسة استشارية مع أخصائي الطب البديل لدينا.'
           : 'Thank you for sharing how you feel. Based on your description, I suggest trying our calming chamomile tea or booking a consultation with our alternative medicine specialist.',
         timestamp: new Date(),
       };
@@ -146,7 +147,7 @@ const BodyModelInteractive = ({ onClose }: BodyModelInteractiveProps) => {
           <p className="text-sm text-salamtak-brown/70">
             {isRTL 
               ? 'اخبرني كيف تشعر وسأساعدك في العثور على أفضل الحلول الطبيعية'
-              : 'Tell me how you feel and I'll help you find the best natural solutions'
+              : 'Tell me how you feel and I\'ll help you find the best natural solutions'
             }
           </p>
         </DialogHeader>

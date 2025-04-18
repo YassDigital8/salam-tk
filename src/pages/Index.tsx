@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { useLanguage } from '@/context/LanguageContext';
@@ -95,7 +96,7 @@ const MainContent = () => {
                 <p className="text-salamtak-brown/80 text-lg mb-6">
                   {isRTL 
                     ? 'أول تطبيق يقدم استشارات صحية مباشرة. أخبرنا كيف تشعر، وسنساعدك في العثور على الحل المناسب.'
-                    : 'The first app to provide instant health consultations. Tell us how you feel, and we'll help you find the right solution.'
+                    : 'The first app to provide instant health consultations. Tell us how you feel, and we\'ll help you find the right solution.'
                   }
                 </p>
                 <Button 
