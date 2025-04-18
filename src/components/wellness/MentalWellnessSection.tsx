@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/context/LanguageContext';
@@ -6,31 +5,28 @@ import { useToast } from '@/hooks/use-toast';
 import MoodTracker from './MoodTracker';
 import Journal from './Journal';
 import MeditationSessions from './MeditationSessions';
+import { MoodEntry, MoodType } from './types/mood';
 
 const MentalWellnessSection = () => {
   const { language, isRTL } = useLanguage();
   const { toast } = useToast();
-  const [mood, setMood] = useState<string>('');
+  const [mood, setMood] = useState<MoodType | ''>('');
+  const [moodHistory, setMoodHistory] = useState<MoodEntry[]>([]);
   const [journal, setJournal] = useState<string>('');
   
-  const handleTrackMood = () => {
-    if (!mood) {
-      toast({
-        title: isRTL ? 'يرجى اختيار مزاجك' : 'Please select your mood',
-        variant: 'destructive',
-      });
-      return;
-    }
+  const handleTrackMood = (entry: MoodEntry) => {
+    setMoodHistory(prev => [...prev, entry]);
+    setMood('');
     
     toast({
       title: isRTL ? 'تم تسجيل مزاجك!' : 'Mood logged successfully!',
       description: isRTL 
-        ? 'يمكنك متابعة سجل مزاجك في صفحة الملف الشخصي' 
-        : 'You can view your mood history in your profile page',
+        ? 'يمكنك متابعة سجل مزاجك في الرسم البياني أدناه' 
+        : 'You can view your mood history in the chart below',
       variant: 'default',
     });
   };
-  
+
   const handleJournalSubmit = () => {
     if (!journal.trim()) {
       toast({
