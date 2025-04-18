@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -11,12 +12,17 @@ const Auth = () => {
   
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
+    localStorage.setItem('isAuthenticated', 'true');
+    
     toast({
       title: isRTL ? "تم تسجيل الدخول بنجاح" : "Successfully logged in",
       description: isRTL ? "جاري تحويلك..." : "Redirecting you...",
     });
-    localStorage.setItem('isAuthenticated', 'true');
-    navigate('/health-profile');
+    
+    // Ensure the redirect happens after the toast is shown
+    setTimeout(() => {
+      navigate('/health-profile');
+    }, 300);
   };
 
   return (

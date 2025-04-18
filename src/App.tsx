@@ -21,11 +21,22 @@ const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  // Check for authentication state in localStorage on app load
+  // Check for authentication state in localStorage on app load and any changes
   useEffect(() => {
-    const authStatus = localStorage.getItem('isAuthenticated');
-    setIsAuthenticated(authStatus === 'true');
-    setIsLoading(false);
+    const checkAuth = () => {
+      const authStatus = localStorage.getItem('isAuthenticated');
+      setIsAuthenticated(authStatus === 'true');
+      setIsLoading(false);
+    };
+    
+    checkAuth();
+    
+    // Listen for storage events to update auth state when changed in other tabs
+    window.addEventListener('storage', checkAuth);
+    
+    return () => {
+      window.removeEventListener('storage', checkAuth);
+    };
   }, []);
 
   // Protected route component
