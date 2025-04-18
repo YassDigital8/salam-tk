@@ -4,7 +4,11 @@ import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { X, ChevronRight, ChevronLeft, HelpCircle } from 'lucide-react';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { X, ChevronRight, ChevronLeft } from 'lucide-react';
+import { ChatMessage } from '@/types/chat';
+import ChatInterface from './ChatInterface';
+import { v4 as uuidv4 } from '@/utils/uuid';
 
 interface BodyPart {
   id: string;
@@ -62,32 +66,85 @@ const BodyModelInteractive = ({ onClose }: BodyModelInteractiveProps) => {
   const { t, language, isRTL } = useLanguage();
   const [selectedBodyPart, setSelectedBodyPart] = useState<string | null>(null);
   const [view, setView] = useState<'front' | 'back'>('front');
-  
-  const ChevronIcon = isRTL ? ChevronLeft : ChevronRight;
-  
+  const [messages, setMessages] = useState<ChatMessage[]>([
+    {
+      id: uuidv4(),
+      role: 'assistant',
+      content: isRTL 
+        ? 'مرحباً! أنا مساعدك الصحي. أخبرني كيف تشعر اليوم أو حدد منطقة في الجسم تشعر فيها بعدم الراحة.'
+        : 'Hello! I am your health assistant. Tell me how you feel today or select an area on the body where you feel discomfort.',
+      timestamp: new Date(),
+    }
+  ]);
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleBodyPartClick = (partId: string) => {
     setSelectedBodyPart(partId);
+    const selectedPart = mockBodyParts.find(part => part.id === partId);
+    if (selectedPart) {
+      const newMessage: ChatMessage = {
+        id: uuidv4(),
+        role: 'user',
+        content: isRTL 
+          ? `أشعر بألم في ${selectedPart.name.ar}`
+          : `I have pain in my ${selectedPart.name.en.toLowerCase()}`,
+        timestamp: new Date(),
+      };
+      
+      const botResponse: ChatMessage = {
+        id: uuidv4(),
+        role: 'assistant',
+        content: isRTL
+          ? `بناءً على ما وصفته، إليك بعض العلاجات المقترحة: ${selectedPart.remedies.ar.join('، ')}`
+          : `Based on your description, here are some suggested remedies: ${selectedPart.remedies.en.join(', ')}`,
+        timestamp: new Date(),
+      };
+      
+      setMessages(prev => [...prev, newMessage, botResponse]);
+    }
   };
-  
-  const selectedPartInfo = selectedBodyPart 
-    ? mockBodyParts.find(part => part.id === selectedBodyPart) 
-    : null;
-  
+
+  const handleSendMessage = (message: string) => {
+    const userMessage: ChatMessage = {
+      id: uuidv4(),
+      role: 'user',
+      content: message,
+      timestamp: new Date(),
+    };
+    
+    setMessages(prev => [...prev, userMessage]);
+    setIsLoading(true);
+    
+    // Simulate bot response
+    setTimeout(() => {
+      const botResponse: ChatMessage = {
+        id: uuidv4(),
+        role: 'assistant',
+        content: isRTL
+          ? 'شكراً لمشاركة مشاعرك. بناءً على ما وصفته، أقترح عليك تجربة شاي البابونج المهدئ أو حجز جلسة استشارية مع أخصائي الطب البديل لدينا.'
+          : 'Thank you for sharing how you feel. Based on your description, I suggest trying our calming chamomile tea or booking a consultation with our alternative medicine specialist.',
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, botResponse]);
+      setIsLoading(false);
+    }, 1500);
+  };
+
   return (
     <Dialog open={true} onOpenChange={() => onClose()}>
-      <DialogContent className="max-w-3xl">
+      <DialogContent className="max-w-4xl h-[80vh]">
         <DialogHeader>
           <DialogTitle className="text-salamtak-blue text-xl flex items-center justify-between">
-            <span>{isRTL ? 'نموذج الجسم التفاعلي' : 'Interactive Body Model'}</span>
+            <span>{isRTL ? 'المساعد الصحي التفاعلي' : 'Interactive Health Assistant'}</span>
             <Button variant="ghost" size="icon" onClick={onClose}>
               <X size={20} />
             </Button>
           </DialogTitle>
         </DialogHeader>
         
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mt-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 h-full">
           {/* Body Model */}
-          <div className="col-span-3 flex flex-col items-center justify-center">
+          <div className="flex flex-col">
             <Tabs defaultValue="front" value={view} onValueChange={(v) => setView(v as 'front' | 'back')}>
               <TabsList className="mb-4">
                 <TabsTrigger value="front">{isRTL ? 'أمامي' : 'Front'}</TabsTrigger>
@@ -96,7 +153,7 @@ const BodyModelInteractive = ({ onClose }: BodyModelInteractiveProps) => {
               
               <TabsContent value="front" className="relative">
                 <img 
-                  src="/placeholder.svg" 
+                  src="/lovable-uploads/body-front.png" 
                   alt="Front body" 
                   className="w-full max-h-[400px] object-contain"
                 />
@@ -116,7 +173,7 @@ const BodyModelInteractive = ({ onClose }: BodyModelInteractiveProps) => {
               
               <TabsContent value="back" className="relative">
                 <img 
-                  src="/placeholder.svg" 
+                  src="/lovable-uploads/body-back.png" 
                   alt="Back body" 
                   className="w-full max-h-[400px] object-contain"
                 />
@@ -130,52 +187,21 @@ const BodyModelInteractive = ({ onClose }: BodyModelInteractiveProps) => {
               </TabsContent>
             </Tabs>
             
-            <p className="text-sm text-salamtak-brown/70 mt-2 flex items-center gap-1">
-              <HelpCircle size={14} />
-              {isRTL ? 'انقر على منطقة في الجسم للحصول على التوصيات' : 'Click on an area of the body for recommendations'}
+            <p className="text-sm text-salamtak-brown/70 mt-2 text-center">
+              {isRTL 
+                ? 'انقر على منطقة في الجسم أو اكتب مباشرة في المحادثة للحصول على توصيات مخصصة'
+                : 'Click on a body area or type directly in the chat for personalized recommendations'
+              }
             </p>
           </div>
           
-          {/* Remedies */}
-          <div className="col-span-2 bg-salamtak-cream/50 p-4 rounded-md">
-            {selectedPartInfo ? (
-              <>
-                <h3 className="text-lg font-medium text-salamtak-brown mb-2">
-                  {selectedPartInfo.name[language]}
-                </h3>
-                <hr className="my-2 border-salamtak-brown/20" />
-                <h4 className="font-medium text-salamtak-green mb-1">
-                  {isRTL ? 'العلاجات المقترحة:' : 'Suggested Remedies:'}
-                </h4>
-                <ul className="space-y-1">
-                  {selectedPartInfo.remedies[language].map((remedy, index) => (
-                    <li key={index} className="flex items-center gap-2">
-                      <ChevronIcon size={16} className="text-salamtak-green" />
-                      <span>{remedy}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                <Button 
-                  className="w-full mt-4 bg-salamtak-blue hover:bg-salamtak-blue/90"
-                >
-                  {isRTL ? 'احجز استشارة' : 'Book a Consultation'}
-                </Button>
-              </>
-            ) : (
-              <div className="h-full flex flex-col items-center justify-center text-center p-6">
-                <img 
-                  src="/placeholder.svg" 
-                  alt="Select body part" 
-                  className="w-16 h-16 mb-3 opacity-50" 
-                />
-                <p className="text-salamtak-brown/70">
-                  {isRTL 
-                    ? 'يرجى النقر على منطقة في الجسم للحصول على توصيات مخصصة' 
-                    : 'Please click on an area of the body for personalized recommendations'}
-                </p>
-              </div>
-            )}
+          {/* Chat Interface */}
+          <div className="flex flex-col h-full">
+            <ChatInterface 
+              messages={messages}
+              onSendMessage={handleSendMessage}
+              isLoading={isLoading}
+            />
           </div>
         </div>
       </DialogContent>
