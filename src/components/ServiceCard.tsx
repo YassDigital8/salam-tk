@@ -1,9 +1,10 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Clock, Star, Calendar } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
 
@@ -31,19 +32,6 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
   const navigate = useNavigate();
   
   const handleBookNow = () => {
-    const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
-    
-    if (!isAuthenticated) {
-      toast({
-        title: isRTL ? 'تسجيل الدخول مطلوب' : 'Authentication Required',
-        description: isRTL 
-          ? 'يرجى تسجيل الدخول لحجز الخدمات' 
-          : 'Please sign in to book services',
-      });
-      navigate('/auth');
-      return;
-    }
-
     // Navigate to the booking page with service ID
     navigate(`/booking/${service.id}`);
     
