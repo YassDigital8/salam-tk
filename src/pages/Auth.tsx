@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -9,20 +9,38 @@ import { toast } from "@/hooks/use-toast";
 const Auth = () => {
   const { t, isRTL } = useLanguage();
   const navigate = useNavigate();
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
   
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    localStorage.setItem('isAuthenticated', 'true');
+    setIsLoggingIn(true);
     
-    toast({
-      title: isRTL ? "تم تسجيل الدخول بنجاح" : "Successfully logged in",
-      description: isRTL ? "جاري تحويلك..." : "Redirecting you...",
-    });
-    
-    // Ensure the redirect happens after the toast is shown
-    setTimeout(() => {
-      navigate('/health-profile');
-    }, 300);
+    try {
+      // Set authentication in localStorage
+      localStorage.setItem('isAuthenticated', 'true');
+      
+      // Show toast message
+      toast({
+        title: isRTL ? "تم تسجيل الدخول بنجاح" : "Successfully logged in",
+        description: isRTL ? "جاري تحويلك..." : "Redirecting you...",
+      });
+      
+      // Force a delay to allow the toast to display
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      // Explicitly trigger a navigation
+      console.log("Redirecting to health profile...");
+      window.location.href = '/health-profile';
+    } catch (error) {
+      console.error("Login error:", error);
+      toast({
+        title: isRTL ? "خطأ في تسجيل الدخول" : "Login Error",
+        description: isRTL ? "حدث خطأ أثناء تسجيل الدخول" : "An error occurred during login",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoggingIn(false);
+    }
   };
 
   return (
@@ -67,8 +85,14 @@ const Auth = () => {
               />
             </div>
 
-            <Button type="submit" className="w-full bg-salamtak-green hover:bg-salamtak-green/90">
-              {isRTL ? 'تسجيل الدخول' : 'Sign In'}
+            <Button 
+              type="submit" 
+              className="w-full bg-salamtak-green hover:bg-salamtak-green/90"
+              disabled={isLoggingIn}
+            >
+              {isLoggingIn 
+                ? (isRTL ? 'جاري تسجيل الدخول...' : 'Signing in...') 
+                : (isRTL ? 'تسجيل الدخول' : 'Sign In')}
             </Button>
 
             <div className="flex items-center justify-center gap-2 text-sm text-salamtak-brown/80 mt-4">

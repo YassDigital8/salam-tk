@@ -27,35 +27,68 @@ const App = () => {
       const authStatus = localStorage.getItem('isAuthenticated');
       setIsAuthenticated(authStatus === 'true');
       setIsLoading(false);
+      console.log("Auth status checked:", authStatus === 'true');
     };
     
+    // Initial check
     checkAuth();
     
     // Listen for storage events to update auth state when changed in other tabs
     window.addEventListener('storage', checkAuth);
     
+    // Check auth status periodically (every 1 second)
+    // This helps catch redirects after login that might not trigger storage events
+    const intervalId = setInterval(checkAuth, 1000);
+    
     return () => {
       window.removeEventListener('storage', checkAuth);
+      clearInterval(intervalId);
     };
   }, []);
 
   // Protected route component
   const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+    console.log("Protected route check - authenticated:", isAuthenticated);
+    
     if (isLoading) {
       return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
     }
     
     if (!isAuthenticated) {
+      console.log("Not authenticated, redirecting to /auth");
       return <Navigate to="/auth" replace />;
     }
     
     // Check if health profile exists
     const healthProfile = localStorage.getItem('healthProfile');
+    console.log("Health profile check:", !!healthProfile);
+    
     if (!healthProfile && window.location.pathname !== '/health-profile') {
+      console.log("No health profile, redirecting to /health-profile");
       return <Navigate to="/health-profile" replace />;
     }
     
     return <>{children}</>;
+  };
+
+  // Force re-render on route change
+  useEffect(() => {
+    const handleRouteChange = () => {
+      console.log("Route changed:", window.location.pathname);
+      checkAuth();
+    };
+    
+    window.addEventListener('popstate', handleRouteChange);
+    
+    return () => {
+      window.removeEventListener('popstate', handleRouteChange);
+    };
+  }, []);
+  
+  // Helper function to check auth status
+  const checkAuth = () => {
+    const authStatus = localStorage.getItem('isAuthenticated');
+    setIsAuthenticated(authStatus === 'true');
   };
 
   return (
