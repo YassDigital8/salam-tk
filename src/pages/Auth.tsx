@@ -4,6 +4,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useNavigate } from 'react-router-dom';
+import { toast } from "@/hooks/use-toast";
 
 const Auth = () => {
   const { t, isRTL } = useLanguage();
@@ -12,6 +13,12 @@ const Auth = () => {
   // Temporary navigation until Supabase is integrated
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
+    toast({
+      title: isRTL ? "تم تسجيل الدخول بنجاح" : "Successfully logged in",
+      description: isRTL ? "جاري تحويلك..." : "Redirecting you...",
+    });
+    // Set authentication to true in localStorage to persist the login
+    localStorage.setItem('isAuthenticated', 'true');
     navigate('/');
   };
 
