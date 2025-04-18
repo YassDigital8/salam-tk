@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -10,15 +9,17 @@ import ProductCard from '@/components/ProductCard';
 import ServiceCard from '@/components/ServiceCard';
 import FeatureCard from '@/components/FeatureCard';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, ArrowLeft, ShoppingBag, CalendarDays } from 'lucide-react';
+import { ArrowRight, ArrowLeft, ShoppingBag, CalendarDays, Bot } from 'lucide-react';
 import { products, services, features } from '@/data';
 import { useNavigate } from 'react-router-dom';
 import { toast } from '@/hooks/use-toast';
+import BodyModelInteractive from '@/components/BodyModelInteractive';
 
 const MainContent = () => {
   const { t, isRTL } = useLanguage();
   const isMobile = useIsMobile();
   const navigate = useNavigate();
+  const [isModelOpen, setIsModelOpen] = useState(false);
   
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
   
@@ -81,6 +82,49 @@ const MainContent = () => {
           </div>
         </div>
       </section>
+      
+      {/* Salam-tk Consultant Bot Section */}
+      <section className="py-10 md:py-16 bg-gradient-to-br from-salamtak-light via-white to-salamtak-cream">
+        <div className="salamtak-container">
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="md:w-1/2">
+              <div className="max-w-lg">
+                <h2 className="text-3xl md:text-4xl font-bold text-salamtak-brown mb-4">
+                  {isRTL ? 'مستشار سلامتك الشخصي' : 'Your Personal Health Consultant'}
+                </h2>
+                <p className="text-salamtak-brown/80 text-lg mb-6">
+                  {isRTL 
+                    ? 'أول تطبيق يقدم استشارات صحية مباشرة. أخبرنا كيف تشعر، وسنساعدك في العثور على الحل المناسب.'
+                    : 'The first app to provide instant health consultations. Tell us how you feel, and we'll help you find the right solution.'
+                  }
+                </p>
+                <Button 
+                  onClick={() => setIsModelOpen(true)}
+                  className="bg-salamtak-blue hover:bg-salamtak-blue/90 text-white flex items-center gap-2"
+                  size="lg"
+                >
+                  <Bot size={20} />
+                  <span>
+                    {isRTL ? 'تحدث مع مستشار سلامتك' : 'Chat with Salam-tk Consultant'}
+                  </span>
+                </Button>
+              </div>
+            </div>
+            <div className="md:w-1/2 flex justify-center">
+              <img 
+                src="/lovable-uploads/b07160e0-25de-434c-a82a-40ed23f75748.png"
+                alt="Salam-tk Health Consultant"
+                className="max-w-[80%] md:max-w-full rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Body Model Dialog */}
+      {isModelOpen && (
+        <BodyModelInteractive onClose={() => setIsModelOpen(false)} />
+      )}
       
       {/* Products Section */}
       <section className="py-10 md:py-16">

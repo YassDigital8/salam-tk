@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -9,6 +8,7 @@ import { X, ChevronRight, ChevronLeft } from 'lucide-react';
 import { ChatMessage } from '@/types/chat';
 import ChatInterface from './ChatInterface';
 import { v4 as uuidv4 } from '@/utils/uuid';
+import Bot from '@/components/ui/bot';
 
 interface BodyPart {
   id: string;
@@ -71,8 +71,8 @@ const BodyModelInteractive = ({ onClose }: BodyModelInteractiveProps) => {
       id: uuidv4(),
       role: 'assistant',
       content: isRTL 
-        ? 'مرحباً! أنا مساعدك الصحي. أخبرني كيف تشعر اليوم أو حدد منطقة في الجسم تشعر فيها بعدم الراحة.'
-        : 'Hello! I am your health assistant. Tell me how you feel today or select an area on the body where you feel discomfort.',
+        ? 'مرحباً! أنا مستشار سلامتك. كيف يمكنني مساعدتك اليوم؟ يمكنك النقر على منطقة في الجسم أو إخباري مباشرة عن ما تشعر به.'
+        : 'Hello! I am your Salam-tk consultant. How can I help you today? You can click on a body area or tell me directly how you feel.',
       timestamp: new Date(),
     }
   ]);
@@ -121,7 +121,7 @@ const BodyModelInteractive = ({ onClose }: BodyModelInteractiveProps) => {
         id: uuidv4(),
         role: 'assistant',
         content: isRTL
-          ? 'شكراً لمشاركة مشاعرك. بناءً على ما وصفته، أقترح عليك تجربة شاي البابونج المهدئ أو حجز جلسة استشارية مع أخصائي الطب البديل لدينا.'
+          ? 'شكراً لم��اركة مشاعرك. بناءً على ما وصفته، أقترح عليك تجربة شاي البابونج المهدئ أو حجز جلسة استشارية مع أخصائي الطب البديل لدينا.'
           : 'Thank you for sharing how you feel. Based on your description, I suggest trying our calming chamomile tea or booking a consultation with our alternative medicine specialist.',
         timestamp: new Date(),
       };
@@ -135,15 +135,23 @@ const BodyModelInteractive = ({ onClose }: BodyModelInteractiveProps) => {
       <DialogContent className="max-w-4xl h-[80vh]">
         <DialogHeader>
           <DialogTitle className="text-salamtak-blue text-xl flex items-center justify-between">
-            <span>{isRTL ? 'المساعد الصحي التفاعلي' : 'Interactive Health Assistant'}</span>
+            <div className="flex items-center gap-2">
+              <Bot className="text-salamtak-green" size={24} />
+              <span>{isRTL ? 'مستشار سلامتك الشخصي' : 'Salam-tk Health Consultant'}</span>
+            </div>
             <Button variant="ghost" size="icon" onClick={onClose}>
               <X size={20} />
             </Button>
           </DialogTitle>
+          <p className="text-sm text-salamtak-brown/70">
+            {isRTL 
+              ? 'اخبرني كيف تشعر وسأساعدك في العثور على أفضل الحلول الطبيعية'
+              : 'Tell me how you feel and I'll help you find the best natural solutions'
+            }
+          </p>
         </DialogHeader>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 h-full">
-          {/* Body Model */}
           <div className="flex flex-col">
             <Tabs defaultValue="front" value={view} onValueChange={(v) => setView(v as 'front' | 'back')}>
               <TabsList className="mb-4">
@@ -158,7 +166,6 @@ const BodyModelInteractive = ({ onClose }: BodyModelInteractiveProps) => {
                   className="w-full max-h-[400px] object-contain"
                 />
                 
-                {/* Clickable areas - front view */}
                 <div 
                   className="absolute w-1/4 h-1/6 top-[10%] left-[37.5%] cursor-pointer hover:bg-salamtak-green/20 rounded-full transition-colors"
                   onClick={() => handleBodyPartClick('head')}
@@ -178,7 +185,6 @@ const BodyModelInteractive = ({ onClose }: BodyModelInteractiveProps) => {
                   className="w-full max-h-[400px] object-contain"
                 />
                 
-                {/* Clickable areas - back view */}
                 <div 
                   className="absolute w-[30%] h-[30%] top-[20%] left-[35%] cursor-pointer hover:bg-salamtak-green/20 rounded transition-colors"
                   onClick={() => handleBodyPartClick('back')}
@@ -195,7 +201,6 @@ const BodyModelInteractive = ({ onClose }: BodyModelInteractiveProps) => {
             </p>
           </div>
           
-          {/* Chat Interface */}
           <div className="flex flex-col h-full">
             <ChatInterface 
               messages={messages}

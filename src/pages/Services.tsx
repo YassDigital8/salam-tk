@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -10,13 +10,11 @@ import MobileNavigation from '@/components/MobileNavigation';
 import ServiceCard from '@/components/ServiceCard';
 import { Button } from '@/components/ui/button';
 import { services } from '@/data';
-import { Calendar, ArrowLeft } from 'lucide-react';
-import BodyModelInteractive from '@/components/BodyModelInteractive';
+import { ArrowLeft } from 'lucide-react';
 
 const ServicesContent = () => {
   const { t, isRTL } = useLanguage();
   const navigate = useNavigate();
-  const [isModelOpen, setIsModelOpen] = useState(false);
   
   return (
     <main className="pb-20 md:pb-0">
@@ -41,23 +39,8 @@ const ServicesContent = () => {
               </p>
             </div>
           </div>
-          
-          <div className="mt-6">
-            <Button 
-              variant="outline" 
-              onClick={() => setIsModelOpen(true)}
-              className="bg-salamtak-blue text-white border-salamtak-blue hover:bg-salamtak-blue/90"
-            >
-              {isRTL ? 'فحص جسمك التفاعلي' : 'Interactive Body Check'}
-            </Button>
-          </div>
         </div>
       </section>
-      
-      {/* Body Model Dialog */}
-      {isModelOpen && (
-        <BodyModelInteractive onClose={() => setIsModelOpen(false)} />
-      )}
       
       {/* Services Grid */}
       <section className="py-8">
