@@ -1,15 +1,13 @@
-
 import React, { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { X, ChevronRight, ChevronLeft } from 'lucide-react';
+import { X, ChevronRight, ChevronLeft, Bot } from 'lucide-react';
 import { ChatMessage } from '@/types/chat';
 import ChatInterface from './ChatInterface';
 import { v4 as uuidv4 } from '@/utils/uuid';
-import Bot from '@/components/ui/bot';
 
 interface BodyPart {
   id: string;
