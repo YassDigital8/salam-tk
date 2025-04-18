@@ -28,7 +28,7 @@ export const services: Service[] = [
     },
     duration: 60,
     price: 75,
-    image: '/placeholder.svg',
+    image: '/lovable-uploads/2004b7be-7bdf-4f8a-8e28-797373031c0e.png',
     rating: 4.8
   },
   {
@@ -43,7 +43,7 @@ export const services: Service[] = [
     },
     duration: 45,
     price: 90,
-    image: '/placeholder.svg',
+    image: '/lovable-uploads/a59638cc-4815-4280-b8ec-e299cbe65d0e.png',
     rating: 4.9
   },
   {
@@ -58,7 +58,7 @@ export const services: Service[] = [
     },
     duration: 60,
     price: 85,
-    image: '/placeholder.svg',
+    image: '/lovable-uploads/b07160e0-25de-434c-a82a-40ed23f75748.png',
     rating: 4.7
   },
   {
@@ -73,7 +73,8 @@ export const services: Service[] = [
     },
     duration: 45,
     price: 110,
-    image: '/placeholder.svg',
+    image: '/lovable-uploads/2004b7be-7bdf-4f8a-8e28-797373031c0e.png',
     rating: 4.6
   }
 ];
+

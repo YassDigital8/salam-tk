@@ -64,7 +64,7 @@ export const products: Product[] = [
     },
     category: 'cosmetics',
     price: 29.99,
-    image: '/placeholder.svg',
+    image: '/lovable-uploads/0f9a78a9-8160-4723-9438-c05c95f9ac8e.png',
     rating: 4.8,
     inStock: true,
     isFeatured: true
@@ -81,7 +81,7 @@ export const products: Product[] = [
     },
     category: 'supplements',
     price: 22.50,
-    image: '/placeholder.svg',
+    image: '/lovable-uploads/b07160e0-25de-434c-a82a-40ed23f75748.png',
     rating: 4.6,
     inStock: true
   },
@@ -97,7 +97,7 @@ export const products: Product[] = [
     },
     category: 'home',
     price: 18.99,
-    image: '/placeholder.svg',
+    image: '/lovable-uploads/a59638cc-4815-4280-b8ec-e299cbe65d0e.png',
     rating: 4.9,
     inStock: true
   },
@@ -113,7 +113,7 @@ export const products: Product[] = [
     },
     category: 'home',
     price: 24.99,
-    image: '/placeholder.svg',
+    image: '/lovable-uploads/2004b7be-7bdf-4f8a-8e28-797373031c0e.png',
     rating: 4.7,
     inStock: true
   },
@@ -129,7 +129,7 @@ export const products: Product[] = [
     },
     category: 'herbs',
     price: 8.99,
-    image: '/placeholder.svg',
+    image: '/lovable-uploads/0f9a78a9-8160-4723-9438-c05c95f9ac8e.png',
     rating: 4.6,
     inStock: true
   },
@@ -145,8 +145,9 @@ export const products: Product[] = [
     },
     category: 'herbs',
     price: 6.50,
-    image: '/placeholder.svg',
+    image: '/lovable-uploads/b07160e0-25de-434c-a82a-40ed23f75748.png',
     rating: 4.3,
     inStock: true
   }
 ];
+
